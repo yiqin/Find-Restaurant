@@ -27,7 +27,7 @@ ImageButton mImageButton;
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"scan","cart", "pay"};
+    CharSequence Titles[]={"search","list", "grid"};
     int Numboftabs =3;
 
     //for collors
