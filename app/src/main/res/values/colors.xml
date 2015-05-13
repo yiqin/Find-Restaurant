@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="green">#00897B</color>
     <color name="ColorPrimary">#00897B</color>
+    <color name="purple">#ff7e44ff</color>
+    <color name="orange">#ffd0740d</color>
     <color name="ColorPrimaryDark">#00695C</color>
-    <color name="tabsScrollColor">#004D40</color>
+    <color name="tabsScrollColor">#ff000000</color>
+
 
 </resources>
