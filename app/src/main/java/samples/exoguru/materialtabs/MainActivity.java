@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -23,7 +25,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 public class MainActivity extends ActionBarActivity {
 
     // Declaring Your View and Variables
-
+ImageButton mImageButton;
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
@@ -41,6 +43,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mImageButton = (ImageButton)findViewById(R.id.runCommand);
+        mImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "clicked floating", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
