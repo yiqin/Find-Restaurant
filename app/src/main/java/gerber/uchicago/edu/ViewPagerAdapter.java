@@ -1,4 +1,4 @@
-package samples.exoguru.materialtabs;
+package gerber.uchicago.edu;
 
 
 import android.support.v4.app.Fragment;

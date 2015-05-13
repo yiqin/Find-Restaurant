@@ -1,12 +1,7 @@
-package samples.exoguru.materialtabs;
+package gerber.uchicago.edu;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
-import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -19,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import gerber.uchicago.edu.R;
 
 
 public class SlidingTabLayout extends HorizontalScrollView {
