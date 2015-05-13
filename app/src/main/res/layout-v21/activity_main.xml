@@ -22,9 +22,12 @@
         />
 
     <FrameLayout
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_weight="1">
+
+
+
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_height="match_parent"
@@ -35,18 +38,19 @@
         android:id="@+id/runCommand"
         android:layout_width="@dimen/round_button_diameter"
         android:layout_height="@dimen/round_button_diameter"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="end|bottom"
         android:layout_marginBottom="@dimen/add_button_margin"
         android:layout_marginEnd="@dimen/add_button_margin"
         android:tint="@android:color/white"
+        android:background="@drawable/oval_ripple"
         android:src="@android:drawable/ic_input_add"
-        android:background="@drawable/oval"
+        android:elevation="@dimen/elevation_low"
+        android:stateListAnimator="@anim/button_elevation"
         tools:ignore="RtlCompat" />
 
 
 
+
     </FrameLayout>
-
-
 
 </LinearLayout>
