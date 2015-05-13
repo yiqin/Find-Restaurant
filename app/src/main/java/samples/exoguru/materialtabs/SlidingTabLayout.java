@@ -173,27 +173,29 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView = createDefaultTabView(getContext());
             }
 
+          //  tabView.setAlpha(0.8f);
+
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
                 tabTitleView = (TextView) tabView;
             }
-            ScaleDrawable drawable = null;
-            switch (i){
-                case 0:
-
-                    break;
-                case 1:
-                   // drawable = getResources().getDrawable(R.drawable.cart_black);
-                  //  drawable = new ScaleDrawable(getResources().getDrawable(R.drawable.cart_black),  0, .5f, .5f);
-                    //drawable.setBounds(0, 0, 10, 10);
-                   // tabTitleView.setBackground(drawable);
-                    break;
-                case 2:
-
-
-                    break;
-                default:
-                    break;
-            }
+//            ScaleDrawable drawable = null;
+//            switch (i){
+//                case 0:
+//
+//                    break;
+//                case 1:
+//                   // drawable = getResources().getDrawable(R.drawable.cart_black);
+//                  //  drawable = new ScaleDrawable(getResources().getDrawable(R.drawable.cart_black),  0, .5f, .5f);
+//                    //drawable.setBounds(0, 0, 10, 10);
+//                   // tabTitleView.setBackground(drawable);
+//                    break;
+//                case 2:
+//
+//
+//                    break;
+//                default:
+//                    break;
+//            }
 
             if (mDistributeEvenly) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
@@ -217,6 +219,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             tabTitleView.setTextColor(getResources().getColorStateList(R.color.selector));
+           // tabView.setBackground(R.color.selector_back);
             tabTitleView.setTextSize(14);
         }
     }

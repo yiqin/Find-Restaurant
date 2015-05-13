@@ -1,6 +1,7 @@
 package samples.exoguru.materialtabs;
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -93,6 +96,8 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
 
@@ -102,12 +107,20 @@ public class MainActivity extends ActionBarActivity {
 
     private void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
+
+
         mTintManager.setTintColor(newColor);
         // change ActionBar color just if an ActionBar is available
         Drawable colorDrawable = new ColorDrawable(newColor);
        // Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
         currentColor = newColor;
+//        View v = tabs.getChildAt(1);
+//        Drawable drawable=  v.getBackground();
+//        if (drawable!=null) {
+//          //  drawable.setAlpha(220);
+//            v.setBackgroundColor(getResources().getColor(R.color.green));
+//        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
