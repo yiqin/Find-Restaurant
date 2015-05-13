@@ -1,7 +1,11 @@
 package samples.exoguru.materialtabs;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -172,12 +176,33 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
                 tabTitleView = (TextView) tabView;
             }
+            ScaleDrawable drawable = null;
+            switch (i){
+                case 0:
+
+                    break;
+                case 1:
+                   // drawable = getResources().getDrawable(R.drawable.cart_black);
+                  //  drawable = new ScaleDrawable(getResources().getDrawable(R.drawable.cart_black),  0, .5f, .5f);
+                    //drawable.setBounds(0, 0, 10, 10);
+                   // tabTitleView.setBackground(drawable);
+                    break;
+                case 2:
+
+
+                    break;
+                default:
+                    break;
+            }
 
             if (mDistributeEvenly) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
                 lp.width = 0;
                 lp.weight = 1;
             }
+
+
+
 
             tabTitleView.setText(adapter.getPageTitle(i));
             tabView.setOnClickListener(tabClickListener);

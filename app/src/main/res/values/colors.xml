@@ -2,11 +2,18 @@
 <resources>
 
     <color name="green">#00897B</color>
-    <color name="ColorPrimary">#00897B</color>
+    <color name="green_dark">#ff00413c</color>
     <color name="purple">#ff7e44ff</color>
+    <color name="purple_dark">#ff321858</color>
     <color name="orange">#ffd0740d</color>
+    <color name="orange_dark">#ff643706</color>
     <color name="ColorPrimaryDark">#00695C</color>
     <color name="tabsScrollColor">#ff000000</color>
+    <color name="black">#ff000000</color>
+
+
+    <color name="ColorPrimary">#00897B</color>
+    <color name="white">#FFF</color>
 
 
 </resources>

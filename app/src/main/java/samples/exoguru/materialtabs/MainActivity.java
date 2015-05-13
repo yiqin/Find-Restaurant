@@ -1,5 +1,6 @@
 package samples.exoguru.materialtabs;
 
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -28,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
     int Numboftabs =3;
 
     //for collors
-    private Drawable oldBackground = null;
+   // private Drawable oldBackground = null;
     private int currentColor;
     private SystemBarTintManager mTintManager;
 
@@ -52,6 +53,7 @@ public class MainActivity extends ActionBarActivity {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
+
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
@@ -59,6 +61,9 @@ public class MainActivity extends ActionBarActivity {
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+
+
+
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
@@ -68,17 +73,23 @@ public class MainActivity extends ActionBarActivity {
                 switch(position){
                     case 0:
                         changeColor(getResources().getColor(R.color.green));
+                       // return getResources().getColor(R.color.green_dark);
                         break;
                     case 1:
                         changeColor(getResources().getColor(R.color.orange));
+                     //   return getResources().getColor(R.color.orange_dark);
                         break;
+
                     case 2:
                         changeColor(getResources().getColor(R.color.purple));
+                      //  return getResources().getColor(R.color.purple_dark);
                         break;
+
+
+
                 }
-
-
                 return getResources().getColor(R.color.tabsScrollColor);
+
             }
         });
 
@@ -94,17 +105,8 @@ public class MainActivity extends ActionBarActivity {
         mTintManager.setTintColor(newColor);
         // change ActionBar color just if an ActionBar is available
         Drawable colorDrawable = new ColorDrawable(newColor);
-        Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
-        LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
-        if (oldBackground == null) {
-            getSupportActionBar().setBackgroundDrawable(ld);
-        } else {
-            TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
-            getSupportActionBar().setBackgroundDrawable(td);
-            td.startTransition(200);
-        }
-
-        oldBackground = ld;
+       // Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
         currentColor = newColor;
     }
     @Override
