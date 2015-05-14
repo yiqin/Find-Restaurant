@@ -19,7 +19,7 @@ import gerber.uchicago.edu.R;
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener {
 
     // Declaring Your View and Variables
 ImageButton mImageButton;
@@ -149,5 +149,11 @@ ImageButton mImageButton;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onTab2Interaction(String id) {
+
     }
 }
