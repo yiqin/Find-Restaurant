@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="green">#00897B</color>
+    <color name="green">#ff00897b</color>
     <color name="green_light">#00897B</color>
     <color name="green_dark">#ff00413c</color>
     <color name="purple">#ff7e44ff</color>
     <color name="purple_dark">#ff321858</color>
-    <color name="orange">#ffd0740d</color>
-    <color name="orange_dark">#ff643706</color>
+    <color name="orange">#ffa7020f</color>
+    <color name="orange_dark">#ff45020a</color>
     <color name="ColorPrimaryDark">#00695C</color>
     <color name="tabsScrollColor">#ff000000</color>
     <color name="black">#ff000000</color>
     <color name="dark_gray">#7a000000</color>
     <color name="shadow_left">#9d040404</color>
-
-
     <color name="ColorPrimary">#00897B</color>
     <color name="white">#FFF</color>
     <color name="shadow_gray">#70ffffff</color>
