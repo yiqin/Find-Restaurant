@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/Restaurant.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/db/RestosDbAdapter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/db/RestosSimpleCursorAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/sound/SoundVibeUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/button_selector.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/gear.png" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout-v11" charset="UTF-8" />
@@ -15,5 +16,9 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/menu/edit_resto.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/menu/reminders_menu.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/menu/results_dialog.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/raw" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/raw/power_up.mp3" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/raw/put_cart.mp3" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/raw/reject.mp3" charset="windows-1252" />
   </component>
 </project>

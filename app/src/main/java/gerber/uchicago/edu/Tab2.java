@@ -37,6 +37,7 @@ import gerber.uchicago.edu.R;
 import gerber.uchicago.edu.db.RestosDbAdapter;
 import gerber.uchicago.edu.db.RestosSimpleCursorAdapter;
 import gerber.uchicago.edu.dummy.DummyContent;
+import gerber.uchicago.edu.sound.SoundVibeUtils;
 
 
 public class Tab2 extends Fragment  {
@@ -273,6 +274,10 @@ public class Tab2 extends Fragment  {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int masterListPosition, long id) {
+
+                //this is just an example, I would put this elsewhere
+                SoundVibeUtils.playSound(getActivity(), R.raw.power_up);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
                 ListView modeList = new ListView(getActivity());

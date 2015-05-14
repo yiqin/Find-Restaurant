@@ -27,7 +27,7 @@ ImageButton mImageButton;
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"search","list", "grid"};
+    CharSequence Titles[]={"list","grid", "details"};
     int Numboftabs =3;
 
     //for collors
@@ -82,12 +82,14 @@ ImageButton mImageButton;
 
                 switch(position){
                     case 0:
-                        changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
+                    case 1:
+                        changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+
                        // return getResources().getColor(R.color.green_dark);
                         break;
-                    case 1:
+
                     case 2:
-                        changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+                        changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
                      //   return getResources().getColor(R.color.orange_dark);
 
                       //  return getResources().getColor(R.color.purple_dark);
