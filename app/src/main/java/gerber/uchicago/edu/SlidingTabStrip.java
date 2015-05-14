@@ -14,11 +14,11 @@ class SlidingTabStrip extends LinearLayout {
 
     private static final int DEFAULT_BOTTOM_BORDER_THICKNESS_DIPS = 0;
     private static final byte DEFAULT_BOTTOM_BORDER_COLOR_ALPHA = 0x26;
-    private static final int SELECTED_INDICATOR_THICKNESS_DIPS = 3;
+    private static final int SELECTED_INDICATOR_THICKNESS_DIPS = 4;
     private static final int DEFAULT_SELECTED_INDICATOR_COLOR = 0xFF33B5E5;
 
     private final int mBottomBorderThickness;
-    private final Paint mBottomBorderPaint;
+    private final Paint mBottomBorderPaint, mPaint;
 
     private final int mSelectedIndicatorThickness;
     private final Paint mSelectedIndicatorPaint;
@@ -57,6 +57,9 @@ class SlidingTabStrip extends LinearLayout {
 
         mSelectedIndicatorThickness = (int) (SELECTED_INDICATOR_THICKNESS_DIPS * density);
         mSelectedIndicatorPaint = new Paint();
+        mPaint = new Paint();
+
+
     }
 
     void setCustomTabColorizer(SlidingTabLayout.TabColorizer customTabColorizer) {
@@ -106,10 +109,36 @@ class SlidingTabStrip extends LinearLayout {
                         (1.0f - mSelectionOffset) * right);
             }
 
-            mSelectedIndicatorPaint.setColor(color);
+            mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.white));
 
+            switch(mSelectedPosition){
+                case 0:
+                    mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.green_dark));
+                   // mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.white));
+                   // changeColor(getResources().getColor(gerber.uchicago.edu.R.color.green));
+                    // return getResources().getColor(R.color.green_dark);
+
+                    break;
+                case 1:
+                   // mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.black));
+                    //   return getResources().getColor(R.color.orange_dark);
+                    mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.orange_dark));
+                    break;
+
+                case 2:
+                    mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.purple_dark));
+                    //  return getResources().getColor(R.color.purple_dark);
+                    break;
+
+            }
+            canvas.drawRect(left,0, right,
+                    height, mPaint);
+            //paints the white bo0ttom
+            mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.white));
             canvas.drawRect(left, height - mSelectedIndicatorThickness, right,
                     height, mSelectedIndicatorPaint);
+
+
         }
 
         // Thin underline along the entire bottom edge
