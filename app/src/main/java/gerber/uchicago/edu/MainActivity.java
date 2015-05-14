@@ -82,16 +82,16 @@ ImageButton mImageButton;
 
                 switch(position){
                     case 0:
-                        changeColor(getResources().getColor(R.color.green));
+                        changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
                        // return getResources().getColor(R.color.green_dark);
                         break;
                     case 1:
-                        changeColor(getResources().getColor(R.color.orange));
+                        changeColor(getResources().getColor(R.color.orange_dark), getResources().getColor(R.color.orange));
                      //   return getResources().getColor(R.color.orange_dark);
                         break;
 
                     case 2:
-                        changeColor(getResources().getColor(R.color.purple));
+                        changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
                       //  return getResources().getColor(R.color.purple_dark);
                         break;
 
@@ -112,8 +112,8 @@ ImageButton mImageButton;
 
     }
 
-    private void changeColor(int newColor) {
-        tabs.setBackgroundColor(newColor);
+    private void changeColor(int newColor, int tabColor) {
+        tabs.setBackgroundColor(tabColor);
 
 
         mTintManager.setTintColor(newColor);
