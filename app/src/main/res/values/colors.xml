@@ -11,10 +11,13 @@
     <color name="ColorPrimaryDark">#00695C</color>
     <color name="tabsScrollColor">#ff000000</color>
     <color name="black">#ff000000</color>
+    <color name="dark_gray">#7a000000</color>
+    <color name="shadow_left">#9d040404</color>
 
 
     <color name="ColorPrimary">#00897B</color>
     <color name="white">#FFF</color>
+    <color name="shadow_gray">#70ffffff</color>
 
 
 </resources>

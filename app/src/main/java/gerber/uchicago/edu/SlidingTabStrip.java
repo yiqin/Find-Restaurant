@@ -15,6 +15,8 @@ class SlidingTabStrip extends LinearLayout {
     private static final int DEFAULT_BOTTOM_BORDER_THICKNESS_DIPS = 0;
     private static final byte DEFAULT_BOTTOM_BORDER_COLOR_ALPHA = 0x26;
     private static final int SELECTED_INDICATOR_THICKNESS_DIPS = 4;
+    private static final int SHADOW_THICK = 4;
+
     private static final int DEFAULT_SELECTED_INDICATOR_COLOR = 0xFF33B5E5;
 
     private final int mBottomBorderThickness;
@@ -113,7 +115,7 @@ class SlidingTabStrip extends LinearLayout {
 
             switch(mSelectedPosition){
                 case 0:
-                    mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.green_dark));
+                   // mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.green_dark));
                    // mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.white));
                    // changeColor(getResources().getColor(gerber.uchicago.edu.R.color.green));
                     // return getResources().getColor(R.color.green_dark);
@@ -122,21 +124,44 @@ class SlidingTabStrip extends LinearLayout {
                 case 1:
                    // mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.black));
                     //   return getResources().getColor(R.color.orange_dark);
-                    mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.orange_dark));
+                   // mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.orange_dark));
                     break;
 
                 case 2:
-                    mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.purple_dark));
+
                     //  return getResources().getColor(R.color.purple_dark);
                     break;
 
             }
-            canvas.drawRect(left,0, right,
+            //draws dark grey barckgraound
+            mPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.dark_gray));
+            canvas.drawRect(left, 0, right,
                     height, mPaint);
+
+
+
+            //drop shadow
+//            mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.shadow_left));
+//            canvas.drawRect(left, 0, left + mSelectedIndicatorThickness / 2,
+//                    height, mSelectedIndicatorPaint);
+//
+//            canvas.drawRect(left + mSelectedIndicatorThickness/2, height -mSelectedIndicatorThickness/2, right,
+//                    height, mSelectedIndicatorPaint);
+
+
             //paints the white bo0ttom
+//            mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.white));
+//            canvas.drawRect(left, height - mSelectedIndicatorThickness, right,
+//                    height, mSelectedIndicatorPaint);
+
+            //highlight
             mSelectedIndicatorPaint.setColor(getResources().getColor(gerber.uchicago.edu.R.color.white));
-            canvas.drawRect(left, height - mSelectedIndicatorThickness, right,
-                    height, mSelectedIndicatorPaint);
+            //left, top, righ, obttom
+            canvas.drawRect(left, 0 , right,
+                    mSelectedIndicatorThickness, mSelectedIndicatorPaint);
+
+//            canvas.drawRect(right - mSelectedIndicatorThickness/2, 0, right,
+//                    height, mSelectedIndicatorPaint);
 
 
         }
