@@ -86,12 +86,10 @@ ImageButton mImageButton;
                        // return getResources().getColor(R.color.green_dark);
                         break;
                     case 1:
-                        changeColor(getResources().getColor(R.color.orange_dark), getResources().getColor(R.color.orange));
-                     //   return getResources().getColor(R.color.orange_dark);
-                        break;
-
                     case 2:
                         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+                     //   return getResources().getColor(R.color.orange_dark);
+
                       //  return getResources().getColor(R.color.purple_dark);
                         break;
 
