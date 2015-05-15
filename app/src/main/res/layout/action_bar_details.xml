@@ -6,25 +6,17 @@
                 android:background="@color/purple_dark"
                 android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/drawer_icon_left"
+    <View
+        android:id="@+id/drawer_icon_right"
         android:layout_width="40dp"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/drawer_icon_left_white" />
+        android:layout_marginRight="10dp"
 
-    <ImageButton
-        android:id="@+id/search_icon"
-        android:layout_toRightOf="@+id/drawer_icon_left"
-        android:layout_width="40dp"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/mag_gray" />
+        android:background="@drawable/drawer_icon_right_white" />
+
+
 
 </RelativeLayout>
+

@@ -18,7 +18,5 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/menu/results_dialog.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/raw" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/raw/power_up.mp3" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/raw/put_cart.mp3" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/app/src/main/res/raw/reject.mp3" charset="windows-1252" />
   </component>
 </project>

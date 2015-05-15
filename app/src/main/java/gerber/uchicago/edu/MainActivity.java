@@ -1,11 +1,14 @@
 package gerber.uchicago.edu;
 
+import android.app.ActionBar;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,32 +25,48 @@ import gerber.uchicago.edu.R;
 public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener {
 
     // Declaring Your View and Variables
-ImageButton mImageButton;
+//ImageButton mImageButton;
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[]={"list","grid", "details"};
     int Numboftabs =3;
+    Toolbar actionBar;
 
+    private Menu mMenu;
     //for collors
    // private Drawable oldBackground = null;
     private int currentColor;
     private SystemBarTintManager mTintManager;
+    private LayoutInflater mInflator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mImageButton = (ImageButton)findViewById(R.id.runCommand);
-        mImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "clicked floating", Toast.LENGTH_SHORT).show();
+        //action-bar
 
-            }
-        });
+        actionBar = (Toolbar) findViewById(R.id.tool_bar);
+
+
+        mInflator = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+
+
+
+
+
+//        mImageButton = (ImageButton)findViewById(R.id.runCommand);
+//        mImageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(MainActivity.this, "clicked floating", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -80,9 +99,21 @@ ImageButton mImageButton;
             @Override
             public int getIndicatorColor(int position) {
 
+
+              //  actionBar.setBackgroundDrawable(new ColorDrawable(R.color.purple_dark));
+                // actionBar.setIcon(R.drawable.ic_action_search);
+
+           //    View rootMenuView = null;
+
+
                 switch(position){
                     case 0:
+
+                        changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+                      //  rootMenuView = mInflator.inflate(R.layout.action_bar_list, null);
+                        break;
                     case 1:
+
                         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
 
                        // return getResources().getColor(R.color.green_dark);
@@ -91,6 +122,7 @@ ImageButton mImageButton;
                     case 2:
                         changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
                      //   return getResources().getColor(R.color.orange_dark);
+                       // rootMenuView = mInflator.inflate(R.layout.action_bar_details, null);
 
                       //  return getResources().getColor(R.color.purple_dark);
                         break;
@@ -98,6 +130,17 @@ ImageButton mImageButton;
 
 
                 }
+
+//                final View paramView = rootMenuView;
+//
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        actionBar.addView(paramView);
+//                    }
+//                });
+
+
                 return getResources().getColor(R.color.tabsScrollColor);
 
             }
@@ -132,7 +175,8 @@ ImageButton mImageButton;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.mMenu = menu;
+        getMenuInflater().inflate(R.menu.reminders_menu, menu);
         return true;
     }
 
@@ -151,6 +195,13 @@ ImageButton mImageButton;
         return super.onOptionsItemSelected(item);
     }
 
+    public Menu getMenu() {
+        return mMenu;
+    }
+
+    public void setMenu(Menu menu) {
+        mMenu = menu;
+    }
 
     @Override
     public void onTab2Interaction(String id) {
