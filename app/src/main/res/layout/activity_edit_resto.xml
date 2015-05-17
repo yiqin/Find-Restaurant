@@ -16,6 +16,36 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         >
+        <RadioGroup
+            android:id="@+id/rdogrp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:background="@drawable/btn1selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:background="@drawable/btn2selector"
+                android:button="@null"
+                android:gravity="center" />
+
+
+        </RadioGroup>
+
 
         <TextView
             android:layout_width="match_parent"
