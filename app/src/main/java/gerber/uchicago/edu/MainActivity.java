@@ -24,9 +24,10 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence mCharSequences[]={"list","grid", "details"};
-    int mNumboftabs =3;
+    CharSequence mCharSequences[]={"list","grid", "edit", "new"};
+    int mNumboftabs =4;
     Toolbar actionBar;
+
 
     private Menu mMenu;
     //for collors
@@ -41,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         setContentView(R.layout.activity_main);
 
         //action-bar
+
 
         actionBar = (Toolbar) findViewById(R.id.tool_bar);
 
@@ -77,15 +79,17 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         adapter =  new ViewPagerAdapter(getSupportFragmentManager(), mCharSequences, mNumboftabs);
 
 
+
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
+
+
+
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
-        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
-
-
+        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available wid
 
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
@@ -102,18 +106,20 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
                 switch(position){
                     case 0:
+                    case 1:
 
                         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
                       //  rootMenuView = mInflator.inflate(R.layout.action_bar_list, null);
                         break;
-                    case 1:
 
-                        changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+
+//                        changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
 
                        // return getResources().getColor(R.color.green_dark);
-                        break;
+//                        break;
 
                     case 2:
+                    case 3:
                         changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
                      //   return getResources().getColor(R.color.orange_dark);
                        // rootMenuView = mInflator.inflate(R.layout.action_bar_details, null);

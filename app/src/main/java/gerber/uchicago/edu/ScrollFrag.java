@@ -18,7 +18,9 @@ public class ScrollFrag extends Fragment {
     public static ScrollFrag getInstance(Bundle bundle){
 
         ScrollFrag scrollFrag = new ScrollFrag();
+
         scrollFrag.setArguments(bundle);
+
         return scrollFrag;
     }
 
@@ -30,10 +32,16 @@ public class ScrollFrag extends Fragment {
             nLayout = getArguments().getInt(LAYOUT_KEY);
         } catch (Exception e) {
            // e.printStackTrace();
-            nLayout = R.layout.frag_scroll_layout_new;
+            nLayout = R.layout.frag_scroll_layout_new_1;
         }
+
+
+
+        StateMgr.getInstance().put(nLayout, this);
 
         View v = inflater.inflate(nLayout,container,false);
         return v;
     }
+
+
 }
