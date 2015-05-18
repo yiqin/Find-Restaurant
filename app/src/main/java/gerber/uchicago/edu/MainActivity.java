@@ -1,6 +1,5 @@
 package gerber.uchicago.edu;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,13 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-
-import gerber.uchicago.edu.R;
 
 /**
  * Created by Edwin on 15/02/2015.
@@ -30,8 +24,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"list","grid", "details"};
-    int Numboftabs =3;
+    CharSequence mCharSequences[]={"list","grid", "details"};
+    int mNumboftabs =3;
     Toolbar actionBar;
 
     private Menu mMenu;
@@ -79,8 +73,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         mTintManager.setStatusBarTintEnabled(true);
 
 
-        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, mCharSequences fot the Tabs and Number Of Tabs.
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), mCharSequences, mNumboftabs);
 
 
         // Assigning ViewPager View and setting the adapter

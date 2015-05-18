@@ -4,18 +4,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="80dp"
               android:background="@color/purple_deep"
 
 
     >
 
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="78dp"
         android:background="?android:attr/activatedBackgroundIndicator"
+
 
         >
 
@@ -28,50 +28,89 @@
 
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/list_niv"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
             android:layout_margin="2dp"
             android:src="@drawable/gear"
             android:scaleType="fitXY" />
-
-        <TextView
-            android:id="@+id/list_text"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-            android:text="name text"
-            android:paddingLeft="10dp"
-            android:textSize="18sp"
-            android:ellipsize="end"
-            android:maxLines="1"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="78dp"
 
 
-            />
-        <View
+            >
 
-            android:layout_width="1dp"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical"
-            android:background="@color/white"
-            android:layout_margin="8dp"
-
-            />
-
-        <TextView
-            android:id="@+id/list_city"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-            android:text="city text"
-
-            android:textSize="18sp"
-            android:ellipsize="end"
-            android:maxLines="1"
+            <TextView
+                android:id="@+id/list_text"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:gravity="top|left"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:text="name text"
+                android:paddingLeft="10dp"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:maxLines="1"
 
 
-            />
+                />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="28dp"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                >
+                <TextView
+                    android:id="@+id/list_address"
+                    android:layout_width="0dp"
+                    android:layout_weight="60"
+                    android:layout_height="28dp"
+                    android:paddingLeft="4dp"
+
+                    android:gravity="top|left"
+                    android:textColor="@color/light_grey"
+                    android:text="123 Main Street Suite 2s "
+
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+
+
+                    />
+            <TextView
+                android:id="@+id/list_city"
+                android:layout_width="0dp"
+                android:layout_weight="40"
+                android:layout_height="28dp"
+                android:paddingLeft="10dp"
+
+                android:gravity="top|left"
+                android:textColor="@color/light_grey"
+                android:text="city text"
+
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="2"
+
+
+                />
+
+            <!--<View-->
+
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:background="@color/white"-->
+            <!--android:layout_margin="8dp"-->
+
+            <!--/>-->
+            </LinearLayout>
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <View
