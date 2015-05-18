@@ -16,24 +16,25 @@
         android:weightSum="2">
 
         <RadioButton
-            android:id="@+id/btn1"
+            android:id="@+id/btn_tab_new"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_margin="0dp"
             android:layout_weight="1"
             android:background="@drawable/btn1selector"
             android:button="@null"
-            android:checked="true"
+
             android:gravity="center"/>
 
         <RadioButton
-            android:id="@+id/btn2"
+            android:id="@+id/btn_tab_edit"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_margin="0dp"
             android:layout_weight="1"
             android:background="@drawable/btn2selector"
             android:button="@null"
+            android:checked="true"
             android:gravity="center"/>
 
 
@@ -45,7 +46,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="0dp"
-        android:background="#CCC"
+        android:background="#CCCC"
         >
 
         <LinearLayout
@@ -62,7 +63,7 @@
                 android:layout_marginTop="16dp"
                 android:background="#999"
                 android:paddingLeft="2dp"
-                android:text="Required:"
+                android:text="Edit:"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -151,174 +152,193 @@
                 android:layout_marginTop="8dp"
                 android:background="#ffc0c0c0"/>
 
-            <TextView
+
+            <ToggleButton
+                android:id="@+id/toggle_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:background="#999"
-                android:paddingLeft="2dp"
-                android:text="Details:"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:checked="true"
+                android:textOff="Show details"
+                android:textOn="Hide details"
+
                 />
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:id="@+id/details_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:baselineAligned="false">
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#999"
+                    android:paddingLeft="2dp"
+                    android:text="Details:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
 
                 <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="150dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight=".25"
-                    android:orientation="vertical"
-                    >
-
-                    <TextView
-                        android:id="@+id/text_phone"
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Phone:"
-                        android:textColor="@color/black"
-                        />
-
-                    <TextView
-                        android:id="@+id/text_address"
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Address:"
-                        android:textColor="@color/black"
-                        />
-
-                    <TextView
-                        android:id="@+id/text_yelp"
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Yelp page:"
-                        android:textColor="@color/black"
-                        />
-
-                    <TextView
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="favorite"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight=".5"
-                    android:orientation="vertical"
-                    >
-
-                    <EditText
-                        android:id="@+id/restaurant_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Phone number..."
-                        android:inputType="phone"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:textSize="14sp"
-                        />
-
-                    <EditText
-                        android:id="@+id/restaurant_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Address..."
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:textSize="14sp"
-
-                        />
-
-                    <EditText
-                        android:id="@+id/restaurant_yelp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Yelp..."
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:textSize="14sp"
-                        />
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:baselineAligned="false">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_width="80dp"
+                        android:layout_height="150dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight=".25"
+                        android:orientation="vertical"
+                        >
 
-                        <CheckBox
-                            android:id="@+id/check_favorite"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="20"
-                            android:gravity="top"
+                        <TextView
+                            android:id="@+id/text_phone"
+                            style="?android:listSeparatorTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Phone:"
+                            android:textColor="@color/black"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_address"
+                            style="?android:listSeparatorTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Address:"
+                            android:textColor="@color/black"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_yelp"
+                            style="?android:listSeparatorTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yelp page:"
+                            android:textColor="@color/black"
+                            />
+
+                        <TextView
+                            style="?android:listSeparatorTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="favorite"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight=".5"
+                        android:orientation="vertical"
+                        >
+
+                        <EditText
+                            android:id="@+id/restaurant_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Phone number..."
+                            android:inputType="phone"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            />
+
+                        <EditText
+                            android:id="@+id/restaurant_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Address..."
+                            android:scrollHorizontally="true"
                             android:singleLine="true"
                             android:textSize="14sp"
 
-
                             />
 
-                        <View
-                            android:id="@+id/view_favorite"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:layout_weight="80">
+                        <EditText
+                            android:id="@+id/restaurant_yelp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Yelp..."
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            />
 
-                        </View>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <CheckBox
+                                android:id="@+id/check_favorite"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="8dp"
+                                android:layout_weight="20"
+                                android:gravity="top"
+                                android:singleLine="true"
+                                android:textSize="14sp"
+
+
+                                />
+
+                            <View
+                                android:id="@+id/view_favorite"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:layout_weight="80">
+
+                            </View>
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
 
-
                 </LinearLayout>
 
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#ffc0c0c0"/>
             </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal">
 
+                    <Button
+                        android:id="@+id/cancel_action_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="25"
+                        android:text="Cancel"
+                        />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:background="#ffc0c0c0"/>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/cancel_action_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_weight="25"
-                    android:text="Cancel"
-                    />
-
-                <Button
-                    android:id="@+id/save_data_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layout_weight="75"
-                    android:text="Save"
-                    />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/save_data_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="75"
+                        android:text="Save"
+                        />
+                </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
