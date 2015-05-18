@@ -119,6 +119,7 @@ public class Tab2 extends Fragment  {
     public void onResume() {
         super.onResume();
         mDbAdapter.open();
+       // mDbAdapter.insertSomeRestos();
         mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
 
     }
