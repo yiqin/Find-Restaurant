@@ -54,7 +54,6 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
 
 
-
 //        mImageButton = (ImageButton)findViewById(R.id.runCommand);
 //        mImageButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -119,6 +118,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 //                        break;
 
                     case 2:
+                        changeColor(getResources().getColor(R.color.orange_dark), getResources().getColor(R.color.orange));
+                        break;
                     case 3:
                         changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
                      //   return getResources().getColor(R.color.orange_dark);

@@ -3,12 +3,9 @@ package gerber.uchicago.edu;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 
 /**
  * Created by Edwin on 15/02/2015.
@@ -27,7 +24,7 @@ public class Tab1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.frag_scroll_layout_old,container,false);
+        View v =inflater.inflate(R.layout.frag_scroll_edit,container,false);
 
 //        btnTabEdit = (RadioButton) v.findViewById(R.id.btn_tab_edit);
 //        btnTabNew = (RadioButton) v.findViewById(R.id.btn_tab_new);
