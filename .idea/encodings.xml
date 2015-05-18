@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/FavActionUtility.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/GoogleResultsData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/Place.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/Restaurant.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/ResultsDialogActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/gerber/uchicago/edu/VolleySingleton.java" charset="UTF-8" />

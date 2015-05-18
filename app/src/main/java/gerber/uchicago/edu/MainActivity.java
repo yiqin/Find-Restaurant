@@ -108,6 +108,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                     case 1:
 
                         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+
                       //  rootMenuView = mInflator.inflate(R.layout.action_bar_list, null);
                         break;
 
