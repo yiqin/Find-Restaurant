@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -29,7 +31,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     SlidingTabLayout tabs;
     CharSequence mCharSequences[]={"list","grid", "edit", "new"};
     int mNumboftabs =4;
-    Toolbar actionBar;
+    ActionBar actionBar;
     int mPos;
 
 
@@ -45,17 +47,19 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        actionBar = (Toolbar) findViewById(R.id.tool_bar);
+     //   actionBar = (Toolbar) findViewById(R.id.tool_bar);
 
 //        mInflator = (LayoutInflater) this
 //                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("");
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+       // toolbar = (Toolbar) findViewById(R.id.tool_bar);
+      //  setSupportActionBar(toolbar);
+      //  toolbar.setTitle("");
+        actionBar  = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+
 
         // create our manager instance after the content view is set
         mTintManager = new SystemBarTintManager(this);
@@ -92,8 +96,56 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
+        inflateActionBar(actionBar,0);
 
     }
+
+    private void inflateActionBar(ActionBar bar, int pos  ) {
+        LayoutInflater inflator = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.ab_custom, null);
+        // ActionBar actionBar = getSupportActionBar();
+        bar.setDisplayHomeAsUpEnabled(false);
+        bar.setDisplayShowHomeEnabled(false);
+        bar.setDisplayShowCustomEnabled(true);
+        bar.setDisplayShowTitleEnabled(false);
+        bar.setCustomView(v);
+
+
+        ImageView v1 =(ImageView) v.findViewById(R.id.action_one);
+        ImageView v2 = (ImageView) v.findViewById(R.id.action_two);
+        ImageView v3 = (ImageView) v.findViewById(R.id.action_three);
+
+       // MenuInflater inflater = getMenuInflater();
+        switch(pos){
+            case 0:
+
+                break;
+            case 1:
+                v1.setVisibility(View.GONE);
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+        }
+
+
+    }
+
+//    private void inflateActionBar(ActionBar bar, int pos ) {
+//        LayoutInflater inflator = (LayoutInflater) this
+//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View v = inflator.inflate(R.layout.ab_custom, null);
+//        // ActionBar actionBar = getSupportActionBar();
+//        bar.setDisplayHomeAsUpEnabled(false);
+//        bar.setDisplayShowHomeEnabled (false);
+//        bar.setDisplayShowCustomEnabled(true);
+//        bar.setDisplayShowTitleEnabled(false);
+//        bar.setCustomView(v);
+//    }
 
     private void changeColor(int newColor, int tabColor) {
         tabs.setBackgroundColor(tabColor);
@@ -111,44 +163,44 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
        // this.mMenu = menu;
-        getMenuInflater().inflate(R.menu.reminders_menu, menu);
+       // getMenuInflater().inflate(R.menu.reminders_menu, menu);
         return true;
     }
 
 
-    public boolean onPrepareOptionsMenu (Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-
-        MenuItem mnu1 = menu.getItem(0);
-        MenuItem mnu2 = menu.getItem(1);
-        MenuItem mnu3 = menu.getItem(2);
-
-
-        switch(mPos){
-            case 0:
-
-                break;
-            case 1:
-                mnu2.setVisible(false);
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-        }
-
-
-
-
-
-//        TextView title  = (TextView) findViewById(R.id.title);
-//        menu.getItem(0).setTitle(
-//                getString(R.string.payFor) + " " + title.getText().toString());
-//        menu.getItem(1).setTitle(getString(R.string.payFor) + "...");
-        return true;
-    }
+//    public boolean onPrepareOptionsMenu (Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//
+//        MenuItem mnu1 = menu.getItem(0);
+//        MenuItem mnu2 = menu.getItem(1);
+//        MenuItem mnu3 = menu.getItem(2);
+//
+//
+//        switch(mPos){
+//            case 0:
+//
+//                break;
+//            case 1:
+//                mnu2.setVisible(false);
+//                break;
+//            case 2:
+//
+//                break;
+//            case 3:
+//
+//                break;
+//        }
+//
+//
+//
+//
+//
+////        TextView title  = (TextView) findViewById(R.id.title);
+////        menu.getItem(0).setTitle(
+////                getString(R.string.payFor) + " " + title.getText().toString());
+////        menu.getItem(1).setTitle(getString(R.string.payFor) + "...");
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -201,6 +253,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                 break;
         }
         invalidateOptionsMenu(); //this will call onPreare
+        inflateActionBar(actionBar, position);
     }
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
