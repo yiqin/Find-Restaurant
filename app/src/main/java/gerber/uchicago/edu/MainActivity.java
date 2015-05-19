@@ -54,6 +54,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         // Creating The Toolbar and setting it as the Toolbar for the activity
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // create our manager instance after the content view is set
         mTintManager = new SystemBarTintManager(this);

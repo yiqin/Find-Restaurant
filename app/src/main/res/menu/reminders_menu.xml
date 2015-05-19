@@ -5,6 +5,7 @@
     <item android:id="@+id/action_one"
           android:title=""
           android:orderInCategory="100"
+          android:layout_gravity="left"
           android:icon="@android:drawable/ic_menu_add"
           app:showAsAction="always" />
 
@@ -16,6 +17,7 @@
 
     <item android:id="@+id/action_three"
           android:title=""
+          android:layout_gravity="right"
           android:orderInCategory="300"
           android:icon="@android:drawable/ic_menu_agenda"
           app:showAsAction="always" />
