@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -32,7 +33,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     int mPos;
 
 
-    private Menu mMenu;
+   //private Menu mMenu;
 
    // private Drawable oldBackground = null;
     private int currentColor;
@@ -107,7 +108,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        this.mMenu = menu;
+       // this.mMenu = menu;
         getMenuInflater().inflate(R.menu.reminders_menu, menu);
         return true;
     }
@@ -115,6 +116,31 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     public boolean onPrepareOptionsMenu (Menu menu) {
         MenuInflater inflater = getMenuInflater();
+
+        MenuItem mnu1 = menu.getItem(0);
+        MenuItem mnu2 = menu.getItem(1);
+        MenuItem mnu3 = menu.getItem(2);
+
+
+        switch(mPos){
+            case 0:
+
+                break;
+            case 1:
+                mnu2.setVisible(false);
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+        }
+
+
+
+
+
 //        TextView title  = (TextView) findViewById(R.id.title);
 //        menu.getItem(0).setTitle(
 //                getString(R.string.payFor) + " " + title.getText().toString());
@@ -137,13 +163,13 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         return super.onOptionsItemSelected(item);
     }
 
-    public Menu getMenu() {
-        return mMenu;
-    }
-
-    public void setMenu(Menu menu) {
-        mMenu = menu;
-    }
+//    public Menu getMenu() {
+//        return mMenu;
+//    }
+//
+//    public void setMenu(Menu menu) {
+//        mMenu = menu;
+//    }
 
     @Override
     public void onTab2Interaction(String id) {
@@ -151,36 +177,33 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     }
 
 
-
-
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
     @Override
     public void onPageSelected(int position) {
+
         switch(position){
             case 0:
-                // mPos = 0;
+                 mPos = 0;
                 changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
                 break;
             case 1:
                 changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
-                // mPos = 1;
+                 mPos = 1;
                 break;
             case 2:
                 changeColor(getResources().getColor(R.color.orange_dark), getResources().getColor(R.color.orange));
-                // mPos = 2;
+                 mPos = 2;
                 break;
             case 3:
                 changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
-                // mPos = 3;
+                 mPos = 3;
                 break;
         }
+        invalidateOptionsMenu(); //this will call onPreare
     }
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+    }
     @Override
     public void onPageScrollStateChanged(int state) {
 
