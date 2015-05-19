@@ -204,17 +204,24 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        switch (item.getItemId()) {
+            case R.id.action_one:
+                //left button, do something
+                Log.d("1", "GG");
+                return true;
+            case R.id.action_two:
+                //center button
+                Log.d("2", "GG");
+                return true;
+            case R.id.action_three:
+                // right button
+                Log.d("3", "GG");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
-        return super.onOptionsItemSelected(item);
+
     }
 
 //    public Menu getMenu() {
@@ -252,7 +259,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                  mPos = 3;
                 break;
         }
-        invalidateOptionsMenu(); //this will call onPreare
+        invalidateOptionsMenu();
         inflateActionBar(actionBar, position);
     }
     @Override
