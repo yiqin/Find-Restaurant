@@ -76,37 +76,38 @@ public class Tab2 extends Fragment  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_new:
-            case R.id.action_new_overflow:
-                //create new Restaurant
-               // Intent intent = new Intent(RestosActivity.this, EditRestoActivity.class);
-               // startActivity(intent);
-                return true;
-
-            case R.id.action_sort_name:
-                setSortOrder(RestosDbAdapter.SORT_NAME_ASC);
-                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-                return true;
-
-            case R.id.action_sort_fav:
-                setSortOrder(RestosDbAdapter.SORT_FAV_DESC);
-                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-                return true;
-
-            case R.id.action_sort_none:
-                setSortOrder(RestosDbAdapter.SORT_NONE);
-                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-                return true;
-
-            case R.id.action_exit:
-                getActivity().finish();
-                return true;
-
-            default:
-                return true;
+//            case R.id.action_new:
+//            case R.id.action_new_overflow:
+//                //create new Restaurant
+//               // Intent intent = new Intent(RestosActivity.this, EditRestoActivity.class);
+//               // startActivity(intent);
+//                return true;
+//
+//            case R.id.action_sort_name:
+//                setSortOrder(RestosDbAdapter.SORT_NAME_ASC);
+//                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
+//                return true;
+//
+//            case R.id.action_sort_fav:
+//                setSortOrder(RestosDbAdapter.SORT_FAV_DESC);
+//                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
+//                return true;
+//
+//            case R.id.action_sort_none:
+//                setSortOrder(RestosDbAdapter.SORT_NONE);
+//                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
+//                return true;
+//
+//            case R.id.action_exit:
+//                getActivity().finish();
+//                return true;
+//
+//            default:
+//                return true;
 
 
         }
+        return true;
     }
 
     @Override
