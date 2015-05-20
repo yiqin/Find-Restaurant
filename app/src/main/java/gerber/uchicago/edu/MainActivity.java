@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -112,9 +113,15 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         bar.setCustomView(v);
 
 
-        ImageView v1 =(ImageView) v.findViewById(R.id.action_one);
-        ImageView v2 = (ImageView) v.findViewById(R.id.action_two);
-        ImageView v3 = (ImageView) v.findViewById(R.id.action_three);
+        ImageView v1 =(ImageButton) v.findViewById(R.id.action_one);
+        v1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("view1", "GGG");
+            }
+        });
+        ImageView v2 = (ImageButton) v.findViewById(R.id.action_two);
+        ImageView v3 = (ImageButton) v.findViewById(R.id.action_three);
 
        // MenuInflater inflater = getMenuInflater();
         switch(pos){
@@ -204,23 +211,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_one:
-                //left button, do something
-                Log.d("1", "GG");
-                return true;
-            case R.id.action_two:
-                //center button
-                Log.d("2", "GG");
-                return true;
-            case R.id.action_three:
-                // right button
-                Log.d("3", "GG");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
 
+        return true;
 
     }
 
