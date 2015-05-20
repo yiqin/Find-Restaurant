@@ -312,6 +312,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     @Override
     public void onPageSelected(int position) {
 
+        SoundVibeUtils.playSound(this, R.raw.swish);
         switch (position) {
             case 0:
             case 1:
