@@ -3,6 +3,7 @@ package gerber.uchicago.edu;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -44,7 +45,8 @@ import gerber.uchicago.edu.sound.SoundVibeUtils;
 public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     // Declaring Your View and Variables
-
+    private static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_";
+    public static final String BOOLEAN_ARRAY_KEY = "boolean_array_key";
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
@@ -53,7 +55,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     ActionBar actionBar;
 
     ActionMode mActionMode;
-    boolean bButtonArray[] = new boolean[4];
+    boolean bButtonArray[] = new boolean[3];
+    SharedPreferences mPreferences;
 
 
     //private Menu mMenu;
@@ -68,16 +71,6 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //   actionBar = (Toolbar) findViewById(R.id.tool_bar);
-
-//        mInflator = (LayoutInflater) this
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-
-        // Creating The Toolbar and setting it as the Toolbar for the activity
-        // toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        //  setSupportActionBar(toolbar);
-        //  toolbar.setTitle("");
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
 
@@ -106,8 +99,6 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             @Override
             public int getIndicatorColor(int position) {
 
-                // Log.d(String.valueOf(position), "TAGGER");
-
 
                 return getResources().getColor(R.color.tabsScrollColor);
 
@@ -118,16 +109,26 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         tabs.setViewPager(pager);
         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
 
+        //get the shared preferences
+        mPreferences = this.getSharedPreferences(
+                "gerber.uchicago.edu", this.MODE_PRIVATE);
 
-        if (savedInstanceState == null) {
-            bButtonArray[0] = true;
-            for (int nC = 1; nC < 4; nC++) {
-                bButtonArray[nC] = false;
+        boolean bFirstLoad = mPreferences.getBoolean(VERY_FIRST_LOAD_MAIN, true);
+        if (bFirstLoad) {
+            for (int nC = 0; nC < 3; nC++) {
+                if (nC == 1) {
+                    bButtonArray[nC] = true;
+                } else {
+                    bButtonArray[nC] = false;
+                }
             }
 
+            //set the flag in preferences so that this block will never be called again.
+            mPreferences.edit().putBoolean(VERY_FIRST_LOAD_MAIN, false).commit();
         } else {
 
             //get it from the prefs
+            bButtonArray = PrefsMgr.getBooleanArray(this, BOOLEAN_ARRAY_KEY, bButtonArray.length );
         }
         inflateActionBar(actionBar, 0);
 
@@ -136,12 +137,10 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     private void inflateActionBar(ActionBar bar, int pos) {
 
-        // invalidateOptionsMenu();
-
         LayoutInflater inflator = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflator.inflate(R.layout.ab_custom, null);
-        // ActionBar actionBar = getSupportActionBar();
+
         bar.setDisplayHomeAsUpEnabled(false);
         bar.setDisplayShowHomeEnabled(false);
         bar.setDisplayShowCustomEnabled(true);
@@ -158,7 +157,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                 bButtonArray[1] = !bButtonArray[1];
                 toggleActionBarButton(0, bButtonArray[0]);
                 toggleActionBarButton(1, bButtonArray[1]);
-                //inflateActionBar(actionBar,0);
+                PrefsMgr.setBooleanArray(MainActivity.this, BOOLEAN_ARRAY_KEY, bButtonArray);
+
             }
         });
         ImageButton v1 = (ImageButton) v.findViewById(R.id.action_1);
@@ -170,8 +170,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                 bButtonArray[0] = !bButtonArray[0];
                 toggleActionBarButton(0, bButtonArray[0]);
                 toggleActionBarButton(1, bButtonArray[1]);
+                PrefsMgr.setBooleanArray(MainActivity.this, BOOLEAN_ARRAY_KEY, bButtonArray);
 
-                // inflateActionBar(actionBar,1);
             }
         });
         ImageButton v2 = (ImageButton) v.findViewById(R.id.action_2);
@@ -181,32 +181,16 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                 Log.d("view2", "GGG");
                 bButtonArray[2] = !bButtonArray[2];
                 toggleActionBarButton(2, bButtonArray[2]);
+                PrefsMgr.setBooleanArray(MainActivity.this, BOOLEAN_ARRAY_KEY, bButtonArray);
 
 
                 if (bButtonArray[2]) {
 
 
-                    //this is just an example, I would put this elsewhere
+                    //this is just an example sound
                     SoundVibeUtils.playSound(MainActivity.this, R.raw.power_up);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-//                ListView modeList = new ListView(MainActivity.this);
-//
-//                String[] stringArray = new String[]{
-//                        "Food",  //0
-//                        "Sports", //1
-//                        "Nature", //2
-//                        "Culture",  //3
-//                        "Entertainment",  //4
-//                        "Other"  //5
-//
-//                };
-
-
-                    //  ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.filters_row, R.id.list_text_filter, stringArray);
-                    //ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.filters_row, R.id.list_text_filter, stringArray);
-                    // modeList.setAdapter(modeAdapter);
 
                     LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     LinearLayout ll = new LinearLayout(MainActivity.this);
@@ -236,7 +220,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
                 }
 
-                // inflateActionBar(actionBar,2);
+
             }
         });
         ImageButton v3 = (ImageButton) v.findViewById(R.id.action_3);
@@ -244,16 +228,9 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             @Override
             public void onClick(View v) {
                 Log.d("view3", "GGG");
-              //  bButtonArray[3] = !bButtonArray[3];
-               // toggleActionBarButton(3, bButtonArray[3]);
 
 
-
-
-                // if actionmode is null "not started"
-
-                    mActionMode = MainActivity.this.startSupportActionMode(MainActivity.this);
-
+                mActionMode = MainActivity.this.startSupportActionMode(MainActivity.this);
 
 
             }
@@ -266,21 +243,10 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         for (int nC = 0; nC < bButtonArray.length; nC++) {
             toggleActionBarButton(nC, bButtonArray[nC]);
         }
+        toggleActionBarButton(3, false);
 
 
     }
-
-//    private void inflateActionBar(ActionBar bar, int pos ) {
-//        LayoutInflater inflator = (LayoutInflater) this
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View v = inflator.inflate(R.layout.ab_custom, null);
-//        // ActionBar actionBar = getSupportActionBar();
-//        bar.setDisplayHomeAsUpEnabled(false);
-//        bar.setDisplayShowHomeEnabled (false);
-//        bar.setDisplayShowCustomEnabled(true);
-//        bar.setDisplayShowTitleEnabled(false);
-//        bar.setCustomView(v);
-//    }
 
 
     private void toggleActionBarButton(int pos, final boolean checked) {
@@ -336,63 +302,6 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // this.mMenu = menu;
-        // getMenuInflater().inflate(R.menu.reminders_menu, menu);
-        return true;
-    }
-
-
-//    public boolean onPrepareOptionsMenu (Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//
-//        MenuItem mnu1 = menu.getItem(0);
-//        MenuItem mnu2 = menu.getItem(1);
-//        MenuItem mnu3 = menu.getItem(2);
-//
-//
-//        switch(mPos){
-//            case 0:
-//
-//                break;
-//            case 1:
-//                mnu2.setVisible(false);
-//                break;
-//            case 2:
-//
-//                break;
-//            case 3:
-//
-//                break;
-//        }
-//
-//
-//
-//
-//
-////        TextView title  = (TextView) findViewById(R.id.title);
-////        menu.getItem(0).setTitle(
-////                getString(R.string.payFor) + " " + title.getText().toString());
-////        menu.getItem(1).setTitle(getString(R.string.payFor) + "...");
-//        return true;
-//    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return true;
-
-    }
-
-//    public Menu getMenu() {
-//        return mMenu;
-//    }
-//
-//    public void setMenu(Menu menu) {
-//        mMenu = menu;
-//    }
 
     @Override
     public void onTab2Interaction(String id) {
@@ -430,41 +339,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     }
 
-    //http://stackoverflow.com/questions/24811536/android-listview-get-item-view-by-position
-    public View getViewByPosition(int pos, ListView listView) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition) {
-            return listView.getAdapter().getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
-        }
-    }
-
-//    @Override
-//    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-//        return false;
-//    }
-//
-//    @Override
-//    public void onDestroyActionMode(ActionMode actionMode) {
-//
-//    }
-
-
-    //callbacks for action mode
+    //callbacks for contextual action mode
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         // Inflate a menu resource providing context menu items
@@ -497,103 +372,4 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-//    class MyColorArrayAdapter<String> extends ArrayAdapter<String> {
-//
-//        public MyColorArrayAdapter(Context context, int resource, int textViewResourceId) {
-//            super(context, resource, textViewResourceId);
-//        }
-//
-//        public MyColorArrayAdapter(Context context, int resource, String[] objects) {
-//            super(context, resource, objects);
-//        }
-//
-//        public MyColorArrayAdapter(Context context, int resource, int textViewResourceId, String[] objects) {
-//            super(context, resource, textViewResourceId, objects);
-//        }
-//
-//        public MyColorArrayAdapter(Context context, int resource, List<String> objects) {
-//            super(context, resource, objects);
-//        }
-//
-//        public MyColorArrayAdapter(Context context, int resource, int textViewResourceId, List<String> objects) {
-//            super(context, resource, textViewResourceId, objects);
-//        }
-//
-//        public MyColorArrayAdapter(Context context, int resource) {
-//            super(context, resource);
-//        }
-//
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            super.getView(position, convertView, parent);
-//
-//
-//
-//
-////                    "Food",  //0
-////                    "Sports", //1
-////                    "Nature", //2
-////                    "Culture",  //3
-////                    "Entertainment",  //4
-////                    "Other"  //5
-//            ViewGroup viewGroup;
-//            View vx;
-//            switch (position) {
-//                case 0:
-//
-//                    viewGroup = (ViewGroup)   ((ListView) parent).getChildAt(position); //getViewByPosition(position, (ListView) parent);.
-//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.RED);
-//                    break;
-//                case 1:
-//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
-//                     vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.argb(255, 100, 50, 200));
-//                    break;
-//                case 2:
-//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
-//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.GREEN);
-//                    break;
-//                case 3:
-//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
-//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.argb(255, 50, 50, 200 ));
-//                    break;
-//                case 4:
-//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
-//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.argb(255, 150, 50, 20 ));
-//                    break;
-//                case 5:
-//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
-//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.argb(255, 50, 150, 200 ));
-//                    break;
-//                default:
-//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
-//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
-//                    vx.setBackgroundColor(Color.argb(255, 50, 150, 200 ));
-//                    break;
-//            }
-//            // invalidateOptionsMenu
-//
-//
-//            return viewGroup;
-//        }
-
-
-    //  }
 }

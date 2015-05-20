@@ -8,7 +8,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_marginTop="0dp"
-    android:background="#CCCC"
+    android:background="#cc626262"
 
     android:orientation="vertical"
     >

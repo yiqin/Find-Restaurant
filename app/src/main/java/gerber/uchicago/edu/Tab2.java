@@ -52,103 +52,15 @@ public class Tab2 extends Fragment  {
     private String mSortOrder;
 
 
-    public String getSortOrder() {
-        return mSortOrder;
-    }
-
-    public void setSortOrder(String strSortOrder) {
-        mSortOrder = strSortOrder;
-        mPreferences.edit().putString(SORT_ORDER, strSortOrder).commit();
-
-    }
-
-
-
-    private int getIdFromPosition(int nPosition) {
-        Cursor cursor = mDbAdapter.fetchAllRestos(getSortOrder());
-        cursor.move(nPosition);
-        return cursor.getInt(RestosDbAdapter.INDEX_ID);
-    }
-
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            case R.id.action_new:
-//            case R.id.action_new_overflow:
-//                //create new Restaurant
-//               // Intent intent = new Intent(RestosActivity.this, EditRestoActivity.class);
-//               // startActivity(intent);
-//                return true;
-//
-//            case R.id.action_sort_name:
-//                setSortOrder(RestosDbAdapter.SORT_NAME_ASC);
-//                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-//                return true;
-//
-//            case R.id.action_sort_fav:
-//                setSortOrder(RestosDbAdapter.SORT_FAV_DESC);
-//                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-//                return true;
-//
-//            case R.id.action_sort_none:
-//                setSortOrder(RestosDbAdapter.SORT_NONE);
-//                mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-//                return true;
-//
-//            case R.id.action_exit:
-//                getActivity().finish();
-//                return true;
-//
-//            default:
-//                return true;
-
-
-        }
-        return true;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mDbAdapter.close();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mDbAdapter.open();
-       // mDbAdapter.insertSomeRestos();
-        mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
+
+    private static final String ARG_PARAM2 = "param2";
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
 
+    private String mParam2;
     private OnTab2InteractionListener mListener;
 
     /**
@@ -188,9 +100,7 @@ public class Tab2 extends Fragment  {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-//        // TODO: Change Adapter to display your content
-//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-//                R.layout.restos_row,R.id.list_text, DummyContent.ITEMS);
+
     }
 
     @Override
@@ -207,9 +117,6 @@ public class Tab2 extends Fragment  {
       //  mListView = (AbsListView) view.findViewById(R.id.reminders_list_view);
        mListView.setAdapter(mAdapter);
 
-        // Set OnItemClickListener so we can be notified on item clicks
-       // mListView.setOnItemClickListener(getActivity());
-
 
         super.onCreate(savedInstanceState);
 
@@ -219,7 +126,7 @@ public class Tab2 extends Fragment  {
 
         //get the shared preferences
         mPreferences = getActivity().getSharedPreferences(
-                "com.apress.gerber.favrestos.app", getActivity().MODE_PRIVATE);
+                "gerber.uchicago.edu", getActivity().MODE_PRIVATE);
 
 
         mDbAdapter = new RestosDbAdapter(getActivity());
@@ -452,14 +359,6 @@ public class Tab2 extends Fragment  {
         mListener = null;
     }
 
-
-    /**
-     * The default content for this Fragment has a TextView that is shown when
-     * the list is empty. If you would like to change the text, call this method
-     * to supply the text it should use.
-     */
-
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -471,8 +370,56 @@ public class Tab2 extends Fragment  {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnTab2InteractionListener {
+
+
         // TODO: Update argument type and name
         public void onTab2Interaction(String id);
+    }
+
+
+    public String getSortOrder() {
+        return mSortOrder;
+    }
+
+    public void setSortOrder(String strSortOrder) {
+        mSortOrder = strSortOrder;
+        mPreferences.edit().putString(SORT_ORDER, strSortOrder).commit();
+
+    }
+
+
+
+    private int getIdFromPosition(int nPosition) {
+        Cursor cursor = mDbAdapter.fetchAllRestos(getSortOrder());
+        cursor.move(nPosition);
+        return cursor.getInt(RestosDbAdapter.INDEX_ID);
+    }
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+
+        }
+        return true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mDbAdapter.close();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mDbAdapter.open();
+        // mDbAdapter.insertSomeRestos();
+        mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
+
     }
 
 }
