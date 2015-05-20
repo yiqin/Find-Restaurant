@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -26,7 +27,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener{
 
     // Declaring Your View and Variables
-    Toolbar toolbar;
+
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
@@ -34,6 +35,8 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     int mNumboftabs =4;
     ActionBar actionBar;
     int mPos;
+
+    boolean bButtonArray[] = new boolean[4];
 
 
    //private Menu mMenu;
@@ -79,14 +82,14 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available wid
 
-        tabs.setOnPageChangeListener(this );
+        tabs.setOnPageChangeListener(this);
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
 
-               // Log.d(String.valueOf(position), "TAGGER");
+                // Log.d(String.valueOf(position), "TAGGER");
 
 
                 return getResources().getColor(R.color.tabsScrollColor);
@@ -97,11 +100,21 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
-        inflateActionBar(actionBar,0);
+
+        inflateActionBar(actionBar, 0);
+        for (int nC = 0; nC < 4; nC++) {
+            toggleActionBarButton(nC,false);
+        }
+
+
+
 
     }
 
     private void inflateActionBar(ActionBar bar, int pos  ) {
+
+       // invalidateOptionsMenu();
+
         LayoutInflater inflator = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflator.inflate(R.layout.ab_custom, null);
@@ -113,31 +126,52 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         bar.setCustomView(v);
 
 
-        ImageView v1 =(ImageButton) v.findViewById(R.id.action_one);
+        ImageButton v0 =(ImageButton) v.findViewById(R.id.action_0);
+        v0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("view0", "GGG");
+                bButtonArray[0] = !bButtonArray[0];
+                toggleActionBarButton(0,bButtonArray[0]);
+                //inflateActionBar(actionBar,0);
+            }
+        });
+        ImageButton v1 =(ImageButton) v.findViewById(R.id.action_1);
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("view1", "GGG");
+                bButtonArray[1] = !bButtonArray[1];
+                toggleActionBarButton(1,bButtonArray[1]);
+               // inflateActionBar(actionBar,1);
             }
         });
-        ImageView v2 = (ImageButton) v.findViewById(R.id.action_two);
-        ImageView v3 = (ImageButton) v.findViewById(R.id.action_three);
+        ImageButton v2 =(ImageButton) v.findViewById(R.id.action_2);
+        v2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("view2", "GGG");
+                bButtonArray[2] = !bButtonArray[2];
+                toggleActionBarButton(2,bButtonArray[2]);
+               // inflateActionBar(actionBar,2);
+            }
+        });
+        ImageButton v3 =(ImageButton) v.findViewById(R.id.action_3);
+        v3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("view3", "GGG");
+                bButtonArray[3] = !bButtonArray[3];
+                toggleActionBarButton(3,bButtonArray[3]);
+               // inflateActionBar(actionBar, 3);
+            }
+        });
+
+
+
 
        // MenuInflater inflater = getMenuInflater();
-        switch(pos){
-            case 0:
 
-                break;
-            case 1:
-                v1.setVisibility(View.GONE);
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-        }
 
 
     }
@@ -153,6 +187,43 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 //        bar.setDisplayShowTitleEnabled(false);
 //        bar.setCustomView(v);
 //    }
+
+
+    private void toggleActionBarButton(int pos,final boolean viz){
+
+        int nId = getResourceId("fram_button_" + pos, "id", getPackageName());
+        final LinearLayout ll = (LinearLayout) findViewById(nId);
+        int nIdTopBar = getResourceId("topbar_button_" + pos, "id", getPackageName());
+        final View vTopBar = ll.findViewById(nIdTopBar);
+        int nButton = getResourceId("action_" + pos, "id", getPackageName());
+        final ImageButton imageButton = (ImageButton) ll.findViewById(nButton);
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (viz) {
+                    vTopBar.setVisibility(View.VISIBLE);
+                    imageButton.setBackground(getResources().getDrawable(R.drawable.pressed_mask));
+                } else {
+                    vTopBar.setVisibility(View.INVISIBLE);
+                    imageButton.setBackground(getResources().getDrawable(R.drawable.unpressed_mask));
+                }
+            }
+        });
+
+
+    }
+    //http://stackoverflow.com/questions/4427608/android-getting-resource-id-from-string
+    public  int getResourceId(String pVariableName, String pResourcename, String pPackageName)
+    {
+        try {
+            return getResources().getIdentifier(pVariableName, pResourcename, pPackageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 
     private void changeColor(int newColor, int tabColor) {
         tabs.setBackgroundColor(tabColor);
