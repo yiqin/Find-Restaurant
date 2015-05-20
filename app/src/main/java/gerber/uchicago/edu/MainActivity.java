@@ -10,10 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,7 +41,7 @@ import gerber.uchicago.edu.sound.SoundVibeUtils;
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     // Declaring Your View and Variables
 
@@ -50,7 +52,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     int mNumboftabs = 4;
     ActionBar actionBar;
     int mPos;
-
+    ActionMode mActionMode;
     boolean bButtonArray[] = new boolean[4];
 
 
@@ -242,9 +244,18 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             @Override
             public void onClick(View v) {
                 Log.d("view3", "GGG");
-                bButtonArray[3] = !bButtonArray[3];
-                toggleActionBarButton(3, bButtonArray[3]);
-                // inflateActionBar(actionBar, 3);
+              //  bButtonArray[3] = !bButtonArray[3];
+               // toggleActionBarButton(3, bButtonArray[3]);
+
+
+
+
+                // if actionmode is null "not started"
+
+                    mActionMode = MainActivity.this.startSupportActionMode(MainActivity.this);
+
+
+
             }
         });
 
@@ -436,6 +447,71 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             return listView.getChildAt(childIndex);
         }
     }
+
+//    @Override
+//    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+//        return false;
+//    }
+//
+//    @Override
+//    public void onDestroyActionMode(ActionMode actionMode) {
+//
+//    }
+
+
+    //callbacks for action mode
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        // Inflate a menu resource providing context menu items
+        MenuInflater inflater = mode.getMenuInflater();
+        inflater.inflate(R.menu.cam_menu_search, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search_done:
+
+
+                mode.finish(); // Action picked, so close the CAB
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    class MyColorArrayAdapter<String> extends ArrayAdapter<String> {
 //
