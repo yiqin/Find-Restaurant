@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,44 +25,44 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener{
+public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener {
 
     // Declaring Your View and Variables
 
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence mCharSequences[]={"list","grid", "edit", "new"};
-    int mNumboftabs =4;
+    CharSequence mCharSequences[] = {"list", "grid", "edit", "new"};
+    int mNumboftabs = 4;
     ActionBar actionBar;
     int mPos;
 
     boolean bButtonArray[] = new boolean[4];
 
 
-   //private Menu mMenu;
+    //private Menu mMenu;
 
-   // private Drawable oldBackground = null;
+    // private Drawable oldBackground = null;
     private int currentColor;
     private SystemBarTintManager mTintManager;
-   // private LayoutInflater mInflator;
+    // private LayoutInflater mInflator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //   actionBar = (Toolbar) findViewById(R.id.tool_bar);
+        //   actionBar = (Toolbar) findViewById(R.id.tool_bar);
 
 //        mInflator = (LayoutInflater) this
 //                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
-       // toolbar = (Toolbar) findViewById(R.id.tool_bar);
-      //  setSupportActionBar(toolbar);
-      //  toolbar.setTitle("");
-        actionBar  = getSupportActionBar();
+        // toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        //  setSupportActionBar(toolbar);
+        //  toolbar.setTitle("");
+        actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
 
 
@@ -71,7 +72,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         mTintManager.setStatusBarTintEnabled(true);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, mCharSequences fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), mCharSequences, mNumboftabs);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), mCharSequences, mNumboftabs);
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
 
@@ -103,17 +104,15 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
         inflateActionBar(actionBar, 0);
         for (int nC = 0; nC < 4; nC++) {
-            toggleActionBarButton(nC,false);
+            toggleActionBarButton(nC, false);
         }
-
-
 
 
     }
 
-    private void inflateActionBar(ActionBar bar, int pos  ) {
+    private void inflateActionBar(ActionBar bar, int pos) {
 
-       // invalidateOptionsMenu();
+        // invalidateOptionsMenu();
 
         LayoutInflater inflator = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -126,52 +125,49 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         bar.setCustomView(v);
 
 
-        ImageButton v0 =(ImageButton) v.findViewById(R.id.action_0);
+        ImageButton v0 = (ImageButton) v.findViewById(R.id.action_0);
         v0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("view0", "GGG");
                 bButtonArray[0] = !bButtonArray[0];
-                toggleActionBarButton(0,bButtonArray[0]);
+                toggleActionBarButton(0, bButtonArray[0]);
                 //inflateActionBar(actionBar,0);
             }
         });
-        ImageButton v1 =(ImageButton) v.findViewById(R.id.action_1);
+        ImageButton v1 = (ImageButton) v.findViewById(R.id.action_1);
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("view1", "GGG");
                 bButtonArray[1] = !bButtonArray[1];
-                toggleActionBarButton(1,bButtonArray[1]);
-               // inflateActionBar(actionBar,1);
+                toggleActionBarButton(1, bButtonArray[1]);
+                // inflateActionBar(actionBar,1);
             }
         });
-        ImageButton v2 =(ImageButton) v.findViewById(R.id.action_2);
+        ImageButton v2 = (ImageButton) v.findViewById(R.id.action_2);
         v2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("view2", "GGG");
                 bButtonArray[2] = !bButtonArray[2];
-                toggleActionBarButton(2,bButtonArray[2]);
-               // inflateActionBar(actionBar,2);
+                toggleActionBarButton(2, bButtonArray[2]);
+                // inflateActionBar(actionBar,2);
             }
         });
-        ImageButton v3 =(ImageButton) v.findViewById(R.id.action_3);
+        ImageButton v3 = (ImageButton) v.findViewById(R.id.action_3);
         v3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("view3", "GGG");
                 bButtonArray[3] = !bButtonArray[3];
-                toggleActionBarButton(3,bButtonArray[3]);
-               // inflateActionBar(actionBar, 3);
+                toggleActionBarButton(3, bButtonArray[3]);
+                // inflateActionBar(actionBar, 3);
             }
         });
 
 
-
-
-       // MenuInflater inflater = getMenuInflater();
-
+        // MenuInflater inflater = getMenuInflater();
 
 
     }
@@ -189,7 +185,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 //    }
 
 
-    private void toggleActionBarButton(int pos,final boolean viz){
+    private void toggleActionBarButton(int pos, final boolean viz) {
 
         int nId = getResourceId("fram_button_" + pos, "id", getPackageName());
         final LinearLayout ll = (LinearLayout) findViewById(nId);
@@ -199,24 +195,29 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         final ImageButton imageButton = (ImageButton) ll.findViewById(nButton);
 
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (viz) {
-                    vTopBar.setVisibility(View.VISIBLE);
-                    imageButton.setBackground(getResources().getDrawable(R.drawable.pressed_mask));
-                } else {
-                    vTopBar.setVisibility(View.INVISIBLE);
-                    imageButton.setBackground(getResources().getDrawable(R.drawable.unpressed_mask));
-                }
-            }
-        });
+        if (viz) {
+            vTopBar.setVisibility(View.VISIBLE);
+            imageButton.setBackground(getResources().getDrawable(R.drawable.pressed_mask));
+        } else {
+            vTopBar.setVisibility(View.INVISIBLE);
+            imageButton.setBackground(getResources().getDrawable(R.drawable.unpressed_mask));
+        }
+
+        int nDp = dpToPx(4);
+        imageButton.setPadding(nDp, nDp, nDp, nDp);
 
 
     }
+
+    //http://stackoverflow.com/questions/8309354/formula-px-to-dp-dp-to-px-android
+    public int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return px;
+    }
+
     //http://stackoverflow.com/questions/4427608/android-getting-resource-id-from-string
-    public  int getResourceId(String pVariableName, String pResourcename, String pPackageName)
-    {
+    public int getResourceId(String pVariableName, String pResourcename, String pPackageName) {
         try {
             return getResources().getIdentifier(pVariableName, pResourcename, pPackageName);
         } catch (Exception e) {
@@ -232,16 +233,17 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         mTintManager.setTintColor(newColor);
         // change ActionBar color just if an ActionBar is available
         Drawable colorDrawable = new ColorDrawable(newColor);
-       // Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
+        // Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
         getSupportActionBar().setBackgroundDrawable(colorDrawable);
         currentColor = newColor;
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-       // this.mMenu = menu;
-       // getMenuInflater().inflate(R.menu.reminders_menu, menu);
+        // this.mMenu = menu;
+        // getMenuInflater().inflate(R.menu.reminders_menu, menu);
         return true;
     }
 
@@ -304,31 +306,33 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     @Override
     public void onPageSelected(int position) {
 
-        switch(position){
+        switch (position) {
             case 0:
-                 mPos = 0;
+                mPos = 0;
                 changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
                 break;
             case 1:
                 changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
-                 mPos = 1;
+                mPos = 1;
                 break;
             case 2:
                 changeColor(getResources().getColor(R.color.orange_dark), getResources().getColor(R.color.orange));
-                 mPos = 2;
+                mPos = 2;
                 break;
             case 3:
                 changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
-                 mPos = 3;
+                mPos = 3;
                 break;
         }
-        invalidateOptionsMenu();
-        inflateActionBar(actionBar, position);
+        // invalidateOptionsMenu();
+        //  inflateActionBar(actionBar, position);
     }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
+
     @Override
     public void onPageScrollStateChanged(int state) {
 
