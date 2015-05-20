@@ -102,10 +102,18 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         tabs.setViewPager(pager);
         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
 
-        inflateActionBar(actionBar, 0);
-        for (int nC = 0; nC < 4; nC++) {
-            toggleActionBarButton(nC, false);
+
+        if (savedInstanceState == null){
+            bButtonArray[0] = true;
+            for (int nC = 1; nC < 4; nC++) {
+                bButtonArray[nC] = false;
+           }
+
+        } else {
+
+            //get it from the prefs
         }
+        inflateActionBar(actionBar, 0);
 
 
     }
@@ -131,7 +139,9 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             public void onClick(View v) {
                 Log.d("view0", "GGG");
                 bButtonArray[0] = !bButtonArray[0];
+                bButtonArray[1] = !bButtonArray[1];
                 toggleActionBarButton(0, bButtonArray[0]);
+                toggleActionBarButton(1, bButtonArray[1]);
                 //inflateActionBar(actionBar,0);
             }
         });
@@ -141,7 +151,10 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             public void onClick(View v) {
                 Log.d("view1", "GGG");
                 bButtonArray[1] = !bButtonArray[1];
+                bButtonArray[0] = !bButtonArray[0];
+                toggleActionBarButton(0, bButtonArray[0]);
                 toggleActionBarButton(1, bButtonArray[1]);
+
                 // inflateActionBar(actionBar,1);
             }
         });
@@ -166,8 +179,13 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
             }
         });
 
+        //use position to switch the gone/view
+
 
         // MenuInflater inflater = getMenuInflater();
+        for (int nC = 0; nC < bButtonArray.length; nC++) {
+            toggleActionBarButton(nC, bButtonArray[nC]);
+        }
 
 
     }
@@ -185,7 +203,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 //    }
 
 
-    private void toggleActionBarButton(int pos, final boolean viz) {
+    private void toggleActionBarButton(int pos, final boolean checked) {
 
         int nId = getResourceId("fram_button_" + pos, "id", getPackageName());
         final LinearLayout ll = (LinearLayout) findViewById(nId);
@@ -195,7 +213,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         final ImageButton imageButton = (ImageButton) ll.findViewById(nButton);
 
 
-        if (viz) {
+        if (checked) {
             vTopBar.setVisibility(View.VISIBLE);
             imageButton.setBackground(getResources().getDrawable(R.drawable.pressed_mask));
         } else {
@@ -205,7 +223,6 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
         int nDp = dpToPx(4);
         imageButton.setPadding(nDp, nDp, nDp, nDp);
-
 
     }
 
