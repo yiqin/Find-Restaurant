@@ -1,6 +1,9 @@
 package gerber.uchicago.edu;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
@@ -8,19 +11,30 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.util.List;
+
+import gerber.uchicago.edu.sound.SoundVibeUtils;
 
 /**
  * Created by Edwin on 15/02/2015.
@@ -103,11 +117,11 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
 
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             bButtonArray[0] = true;
             for (int nC = 1; nC < 4; nC++) {
                 bButtonArray[nC] = false;
-           }
+            }
 
         } else {
 
@@ -165,6 +179,61 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
                 Log.d("view2", "GGG");
                 bButtonArray[2] = !bButtonArray[2];
                 toggleActionBarButton(2, bButtonArray[2]);
+
+
+                if (bButtonArray[2]) {
+
+
+                    //this is just an example, I would put this elsewhere
+                    SoundVibeUtils.playSound(MainActivity.this, R.raw.power_up);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+//                ListView modeList = new ListView(MainActivity.this);
+//
+//                String[] stringArray = new String[]{
+//                        "Food",  //0
+//                        "Sports", //1
+//                        "Nature", //2
+//                        "Culture",  //3
+//                        "Entertainment",  //4
+//                        "Other"  //5
+//
+//                };
+
+
+                    //  ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.filters_row, R.id.list_text_filter, stringArray);
+                    //ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.filters_row, R.id.list_text_filter, stringArray);
+                    // modeList.setAdapter(modeAdapter);
+
+                    LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LinearLayout ll = new LinearLayout(MainActivity.this);
+                    View vx = inflater.inflate(R.layout.filters_row, ll);
+
+                    builder.setView(vx);
+
+                    final Dialog dialog = builder.create();
+
+
+                    Window window = dialog.getWindow();
+                    window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    window.setGravity(Gravity.CENTER);
+
+
+                    // mIdClicked = getIdFromPosition(masterListPosition);
+                    //  mRestoClicked = mDbAdapter.fetchRestoById(mIdClicked);
+                    dialog.setTitle("Set Filter");
+                    dialog.show();
+                    vx.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+
+                }
+
                 // inflateActionBar(actionBar,2);
             }
         });
@@ -354,4 +423,106 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    //http://stackoverflow.com/questions/24811536/android-listview-get-item-view-by-position
+    public View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition) {
+            return listView.getAdapter().getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
+        }
+    }
+
+//    class MyColorArrayAdapter<String> extends ArrayAdapter<String> {
+//
+//        public MyColorArrayAdapter(Context context, int resource, int textViewResourceId) {
+//            super(context, resource, textViewResourceId);
+//        }
+//
+//        public MyColorArrayAdapter(Context context, int resource, String[] objects) {
+//            super(context, resource, objects);
+//        }
+//
+//        public MyColorArrayAdapter(Context context, int resource, int textViewResourceId, String[] objects) {
+//            super(context, resource, textViewResourceId, objects);
+//        }
+//
+//        public MyColorArrayAdapter(Context context, int resource, List<String> objects) {
+//            super(context, resource, objects);
+//        }
+//
+//        public MyColorArrayAdapter(Context context, int resource, int textViewResourceId, List<String> objects) {
+//            super(context, resource, textViewResourceId, objects);
+//        }
+//
+//        public MyColorArrayAdapter(Context context, int resource) {
+//            super(context, resource);
+//        }
+//
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            super.getView(position, convertView, parent);
+//
+//
+//
+//
+////                    "Food",  //0
+////                    "Sports", //1
+////                    "Nature", //2
+////                    "Culture",  //3
+////                    "Entertainment",  //4
+////                    "Other"  //5
+//            ViewGroup viewGroup;
+//            View vx;
+//            switch (position) {
+//                case 0:
+//
+//                    viewGroup = (ViewGroup)   ((ListView) parent).getChildAt(position); //getViewByPosition(position, (ListView) parent);.
+//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.RED);
+//                    break;
+//                case 1:
+//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
+//                     vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.argb(255, 100, 50, 200));
+//                    break;
+//                case 2:
+//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
+//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.GREEN);
+//                    break;
+//                case 3:
+//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
+//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.argb(255, 50, 50, 200 ));
+//                    break;
+//                case 4:
+//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
+//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.argb(255, 150, 50, 20 ));
+//                    break;
+//                case 5:
+//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
+//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.argb(255, 50, 150, 200 ));
+//                    break;
+//                default:
+//                    viewGroup = (ViewGroup) getViewByPosition(position, (ListView) parent);
+//                    vx=  viewGroup.findViewById(R.id.list_tab_color);
+//                    vx.setBackgroundColor(Color.argb(255, 50, 150, 200 ));
+//                    break;
+//            }
+//            // invalidateOptionsMenu
+//
+//
+//            return viewGroup;
+//        }
+
+
+    //  }
 }
