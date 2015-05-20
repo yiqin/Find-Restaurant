@@ -117,7 +117,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/fram_button_2"
+        android:layout_alignParentRight="true"
         >
         <View
             android:id="@+id/topbar_button_3"
