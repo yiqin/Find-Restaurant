@@ -24,7 +24,7 @@ public class Tab4 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.frag_scroll_new,container,false);
+        View v =inflater.inflate(R.layout.frag_scroll_layout_new,container,false);
 
 //        btnTabEdit = (RadioButton) v.findViewById(R.id.btn_tab_edit);
 //        btnTabNew = (RadioButton) v.findViewById(R.id.btn_tab_new);

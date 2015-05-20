@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     CharSequence mCharSequences[] = {"list", "grid", "edit", "new"};
     int mNumboftabs = 4;
     ActionBar actionBar;
-    int mPos;
+
     ActionMode mActionMode;
     boolean bButtonArray[] = new boolean[4];
 
@@ -93,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
         pager = (ViewPager) findViewById(R.id.pager);
 
         pager.setAdapter(adapter);
-        mPos = 0;
+
 
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
@@ -405,24 +405,19 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
         switch (position) {
             case 0:
-                mPos = 0;
-                changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
-                break;
             case 1:
                 changeColor(getResources().getColor(R.color.purple_dark), getResources().getColor(R.color.purple));
-                mPos = 1;
                 break;
             case 2:
                 changeColor(getResources().getColor(R.color.orange_dark), getResources().getColor(R.color.orange));
-                mPos = 2;
+
                 break;
             case 3:
                 changeColor(getResources().getColor(R.color.green_dark), getResources().getColor(R.color.green));
-                mPos = 3;
+
                 break;
         }
-        // invalidateOptionsMenu();
-        //  inflateActionBar(actionBar, position);
+
     }
 
     @Override

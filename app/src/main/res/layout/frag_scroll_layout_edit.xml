@@ -18,9 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="#ff21b0ba"
+        android:background="#999"
         android:paddingLeft="2dp"
-        android:text="Edit:"
+        android:text="Required:"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -46,9 +46,9 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_vertical"
-                android:background="@color/dark_grey"
+                android:background="#555"
                 android:scaleType="fitXY"
-                android:src="@drawable/gear"/>
+                android:src="@drawable/gear_dark"/>
 
         </LinearLayout>
 
@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/button_selector"
+        android:background="@drawable/button_selector_edit"
         android:text="Search"
         android:textColor="@color/white"
         />

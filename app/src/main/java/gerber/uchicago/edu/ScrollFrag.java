@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 public class ScrollFrag extends Fragment {
 
 
+
+
     public static final String LAYOUT_KEY = "LAYOUT";
 
     public static ScrollFrag getInstance(Bundle bundle){
@@ -32,7 +34,7 @@ public class ScrollFrag extends Fragment {
             nLayout = getArguments().getInt(LAYOUT_KEY);
         } catch (Exception e) {
            // e.printStackTrace();
-            nLayout = R.layout.frag_scroll_layout_new_1;
+            nLayout = R.layout.frag_scroll_layout_new;
         }
 
 
