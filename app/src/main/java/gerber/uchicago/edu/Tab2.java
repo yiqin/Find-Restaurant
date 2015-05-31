@@ -48,7 +48,7 @@ public class Tab2 extends Fragment  {
 
     private SharedPreferences mPreferences;
     private static final String SORT_ORDER = "sort_order";
-    private static final String VERY_FIRST_LOAD = "our_very_first_load_";
+    private static final String VERY_FIRST_LOAD = "our_very_first_load_2";
     private String mSortOrder;
 
 
