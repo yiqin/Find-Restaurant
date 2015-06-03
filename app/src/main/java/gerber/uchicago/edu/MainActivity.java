@@ -35,7 +35,7 @@ import gerber.uchicago.edu.sound.SoundVibeUtils;
 public class MainActivity extends ActionBarActivity implements TabList.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     // Declaring Your View and Variables
-    private static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_";
+    public static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_999";
     public static final String BOOLEAN_ARRAY_KEY = "boolean_array_key";
     ViewPager pager;
     ViewPagerAdapter adapter;
@@ -138,7 +138,7 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
             }
 
             //set the flag in preferences so that this block will never be called again.
-            mPreferences.edit().putBoolean(VERY_FIRST_LOAD_MAIN, false).commit();
+          //  mPreferences.edit().putBoolean(VERY_FIRST_LOAD_MAIN, false).commit();
         } else {
 
             //get it from the prefs

@@ -39,7 +39,7 @@ public class TabList extends Fragment  {
 
     private SharedPreferences mPreferences;
     private static final String SORT_ORDER = "sort_order";
-    private static final String VERY_FIRST_LOAD = "our_very_first_load_2";
+   // private static final String VERY_FIRST_LOAD = "our_very_first_load_3";
     private String mSortOrder;
 
 
@@ -124,12 +124,12 @@ public class TabList extends Fragment  {
         mDbAdapter.open();
 
         //get the value associated with "very_first_load";  return true if there is no value in SharedPreferences (will happen on the very first time only)
-        boolean bFirstLoad = mPreferences.getBoolean(VERY_FIRST_LOAD, true);
+        boolean bFirstLoad = mPreferences.getBoolean(MainActivity.VERY_FIRST_LOAD_MAIN, true);
         if (bFirstLoad) {
 
             mDbAdapter.insertSomeRestos();
             //set the flag in preferences so that this block will never be called again.
-            mPreferences.edit().putBoolean(VERY_FIRST_LOAD, false).commit();
+            mPreferences.edit().putBoolean(MainActivity.VERY_FIRST_LOAD_MAIN, false).commit();
         }
 
         mSortOrder = mPreferences.getString(SORT_ORDER, null);
