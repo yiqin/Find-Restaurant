@@ -21,8 +21,7 @@
         <item name="android:layout_width">45dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">6dp</item>
-        <item name="android:layout_marginLeft">3dp</item>
-        <item name="android:layout_marginRight">16dp</item>
+
         <item name="android:layout_height">match_parent</item>
     </style>
 
@@ -31,8 +30,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:paddingBottom">4dp</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:paddingRight">4dp</item>
+
         <item name="android:adjustViewBounds">true</item>
         <item name="android:background">@drawable/pressed_mask</item>
     </style>

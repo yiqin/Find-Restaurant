@@ -45,7 +45,8 @@
     <LinearLayout
         android:id="@+id/fram_button_2"
         style="@style/base_linear_layout"
-        android:layout_toRightOf="@+id/fram_button_1">
+        android:layout_marginRight="60dp"
+        android:layout_toLeftOf="@+id/fram_button_3">
 
         <View
             android:id="@+id/topbar_button_2"
@@ -54,6 +55,7 @@
         <ImageButton
             android:id="@+id/action_2"
             style="@style/image_base_style"
+
             android:src="@drawable/filter"/>
     </LinearLayout>
 
@@ -62,6 +64,7 @@
         android:id="@+id/fram_button_3"
         style="@style/base_linear_layout"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
 
         >
 
