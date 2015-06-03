@@ -62,9 +62,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return tabList;
             //grid view
             case 1:
-                TabGrid tab3 = TabGrid.newInstance(new Random().nextInt(99999999), true);
+                TabGrid tabGrid = new TabGrid();
 
-                return tab3;
+                return tabGrid;
             case 2:
                 TabEdit tabEdit = new TabEdit();
 

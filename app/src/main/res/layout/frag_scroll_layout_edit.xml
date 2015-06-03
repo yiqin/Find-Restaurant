@@ -217,27 +217,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <CheckBox
-                            android:id="@+id/check_favorite"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
-                            android:layout_weight="20"
-                            android:gravity="top"
-                            android:singleLine="true"
-                            android:textSize="14sp"
+                        <!--<CheckBox-->
+                            <!--android:id="@+id/check_favorite"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_marginTop="8dp"-->
+                            <!--android:layout_weight="20"-->
+                            <!--android:gravity="top"-->
+                            <!--android:singleLine="true"-->
+                            <!--android:textSize="14sp"-->
 
 
-                            />
+                            <!--/>-->
 
-                        <View
-                            android:id="@+id/view_favorite"
+                        <!--<View-->
+                            <!--android:id="@+id/view_favorite"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_margin="10dp"-->
+                            <!--android:layout_weight="80">-->
+
+                        <!--</View>-->
+                        <Spinner
+                            android:id="@+id/view_spin"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
-                            android:layout_weight="80">
+                            android:layout_weight="100">
 
-                        </View>
+
+                        </Spinner>
 
 
                     </LinearLayout>

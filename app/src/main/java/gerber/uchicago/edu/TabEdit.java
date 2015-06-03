@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import gerber.uchicago.edu.db.RestosDbAdapter;
 
 /**
- * Created by Edwin on 15/02/2015.
+ * Jennifer Um's awesome code
  */
 public class TabEdit extends Fragment {
 
@@ -52,8 +52,8 @@ public class TabEdit extends Fragment {
     private EditText mNameField, mCityField, mAddressField, mPhoneField, mYelpField;
     private TextView mPhoneText, mAddressText, mYelpText;
     private Button  mSaveButton, mCancelButton;
-    private CheckBox mCheckFavorite;
-    private View mViewFavorite;
+    //private CheckBox mCheckFavorite;
+   // private View mViewFavorite;
     private ImageView mPhotoView;
 
     //the restaurant passed into this activity during edit operation
@@ -134,7 +134,8 @@ public class TabEdit extends Fragment {
                     //no id is required because the sqlite database manages the ids for us
                     if (mRestaurant == null) {
                         Restaurant restoNew = new Restaurant(
-                                mCheckFavorite.isChecked() ? 1 : 0,
+                                0,
+                               // mCheckFavorite.isChecked() ? 1 : 0,
                                 mNameField.getText().toString(),
                                 mCityField.getText().toString(),
                                 mAddressField.getText().toString(),
@@ -148,7 +149,8 @@ public class TabEdit extends Fragment {
                     } else {
                         Restaurant restoEdit = new Restaurant(
                                 mRestaurant.getId(),
-                                mCheckFavorite.isChecked() ? 1 : 0,
+                                0,
+                               // mCheckFavorite.isChecked() ? 1 : 0,
                                 mNameField.getText().toString(),
                                 mCityField.getText().toString(),
                                 mAddressField.getText().toString(),
@@ -164,13 +166,13 @@ public class TabEdit extends Fragment {
 
             }
         });
-        mCheckFavorite = (CheckBox) v.findViewById(R.id.check_favorite);
-        mCheckFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                toggleFavoriteView(isChecked);
-            }
-        });
+//        mCheckFavorite = (CheckBox) v.findViewById(R.id.check_favorite);
+//        mCheckFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                toggleFavoriteView(isChecked);
+//            }
+//        });
         mCancelButton = (Button) v.findViewById(R.id.cancel_action_button);
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,17 +180,17 @@ public class TabEdit extends Fragment {
                 ((MainActivity) getActivity()).goToTab(0);
             }
         });
-        mViewFavorite = v.findViewById(R.id.view_favorite);
-        mViewFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCheckFavorite.isChecked()) {
-                    mCheckFavorite.setChecked(false);
-                } else {
-                    mCheckFavorite.setChecked(true);
-                }
-            }
-        });
+//        mViewFavorite = v.findViewById(R.id.view_favorite);
+//        mViewFavorite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mCheckFavorite.isChecked()) {
+//                    mCheckFavorite.setChecked(false);
+//                } else {
+//                    mCheckFavorite.setChecked(true);
+//                }
+//            }
+//        });
         mPhoneText = (TextView) v.findViewById(R.id.text_phone);
         mYelpText = (TextView) v.findViewById(R.id.text_yelp);
         mAddressText = (TextView) v.findViewById(R.id.text_address);
@@ -212,7 +214,7 @@ public class TabEdit extends Fragment {
         //mRootViewGroup.setBackgroundColor(getResources().getColor(R.color.light_green));
 
         //the default on new restaurant is non-favorite
-        toggleFavoriteView(false);
+        //toggleFavoriteView(false);
 
         //if this is a new record then set the save button to disabled and extract button to gone
         mSaveButton.setEnabled(false);
@@ -225,14 +227,14 @@ public class TabEdit extends Fragment {
             mAddressField.setText(mRestaurant.getAddress());
             mPhoneField.setText(PhoneNumberUtils.formatNumber(mRestaurant.getPhone()));
             mYelpField.setText(mRestaurant.getYelp());
-            mCheckFavorite.setChecked(mRestaurant.getFavorite() == 1);
+           // mCheckFavorite.setChecked(mRestaurant.getFavorite() == 1);
             //change the "save" button label to "update"
             mSaveButton.setText("Update");
 
             //set the root view group to light blue to indicate editing
             //mRootViewGroup.setBackgroundColor(getResources().getColor(R.color.light_blue));
             //toggle the color view green or orange
-            toggleFavoriteView(mCheckFavorite.isChecked());
+           // toggleFavoriteView(mCheckFavorite.isChecked());
 
             //if this is a edit record then set the save button to enabled and extract button to visible
             mSaveButton.setEnabled(true);
@@ -281,7 +283,7 @@ public class TabEdit extends Fragment {
     }
 
 
-
+/**
     private void toggleFavoriteView(boolean bFavorite) {
         if (bFavorite) {
             mViewFavorite.setBackgroundColor(getResources().getColor(R.color.orange));
@@ -290,6 +292,7 @@ public class TabEdit extends Fragment {
         }
 
     }
+*/
 
     private class RequiredEditWatcher implements TextWatcher {
 
@@ -420,14 +423,14 @@ public class TabEdit extends Fragment {
             mAddressField.setText(mRestaurant.getAddress());
             mPhoneField.setText(PhoneNumberUtils.formatNumber(mRestaurant.getPhone()));
             mYelpField.setText(mRestaurant.getYelp());
-            mCheckFavorite.setChecked(mRestaurant.getFavorite() == 1);
+           // mCheckFavorite.setChecked(mRestaurant.getFavorite() == 1);
             //change the "save" button label to "update"
             mSaveButton.setText("Update");
 
             //set the root view group to light blue to indicate editing
             //mRootViewGroup.setBackgroundColor(getResources().getColor(R.color.light_blue));
             //toggle the color view green or orange
-            toggleFavoriteView(mCheckFavorite.isChecked());
+           // toggleFavoriteView(mCheckFavorite.isChecked());
 
             //if this is a edit record then set the save button to enabled and extract button to visible
             mSaveButton.setEnabled(true);
