@@ -526,7 +526,7 @@ public class TabEdit extends Fragment {
 
 
             } catch (Exception e) {
-                e.printStackTrace();
+                return null;
             }
             return bitmap;
         }
@@ -534,7 +534,7 @@ public class TabEdit extends Fragment {
         protected void onPostExecute(Bitmap result) {
             if (result == null){
                 mImageView.setImageResource(R.drawable.gear_dark);
-                Toast.makeText(getActivity(), "Associated image not found on google", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "Associated image not found on google", Toast.LENGTH_SHORT).show();
             } else {
                 mImageView.setImageBitmap(result);
             }
