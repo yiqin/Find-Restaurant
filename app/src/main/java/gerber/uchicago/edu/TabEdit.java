@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class Tab1 extends Fragment {
+public class TabEdit extends Fragment {
 
 
 

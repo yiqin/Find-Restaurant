@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
@@ -12,8 +11,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.Toolbar;
-import android.telephony.PhoneNumberUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -23,26 +20,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-
-import java.util.List;
 
 import gerber.uchicago.edu.sound.SoundVibeUtils;
 
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class MainActivity extends ActionBarActivity implements Tab2.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
+public class MainActivity extends ActionBarActivity implements TabList.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     // Declaring Your View and Variables
     private static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_";
@@ -53,6 +42,23 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     CharSequence mCharSequences[] = {"list", "grid", "edit", "new"};
     int mNumboftabs = 4;
     ActionBar actionBar;
+
+    private   int mRecentIdClicked;
+
+
+    public enum Tab {
+        LIST(0), GRID(1), EDIT(2), NEW(3);
+
+        private int numVal;
+
+       private  Tab(int numVal) {
+            this.numVal = numVal;
+        }
+
+        public int getNumVal() {
+            return numVal;
+        }
+    }
 
     ActionMode mActionMode;
     boolean bButtonArray[] = new boolean[3];
@@ -312,7 +318,7 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
     @Override
     public void onPageSelected(int position) {
 
-        SoundVibeUtils.playSound(this, R.raw.swish);
+      //  SoundVibeUtils.playSound(this, R.raw.swish);
         switch (position) {
             case 0:
             case 1:
@@ -369,6 +375,23 @@ public class MainActivity extends ActionBarActivity implements Tab2.OnTab2Intera
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
+
+    }
+
+
+
+    //overloaded
+    public void goToTab(Tab tab) {
+        adapter.notifyDataSetChanged();
+        pager.setCurrentItem(tab.getNumVal());
+
+    }
+
+    //overloaded
+    public void goToTab(Tab tab, int itemID) {
+        mRecentIdClicked = itemID;
+        adapter.notifyDataSetChanged();
+        pager.setCurrentItem(tab.getNumVal());
 
     }
 

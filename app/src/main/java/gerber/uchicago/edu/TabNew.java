@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class Tab4 extends Fragment {
+public class TabNew extends Fragment {
 
 
     @Override

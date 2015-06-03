@@ -35,6 +35,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         this.mPlacesId = nPlacesId;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+
     //This method return the fragment for the every position in the View Pager
     @Override
     public Fragment getItem(int position) {
@@ -44,23 +50,28 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
             //list view
             case 0:
-                Tab2 tab2 = new Tab2();
-                return tab2;
+                TabList tabList = new TabList();
 
+                return tabList;
             //grid view
             case 1:
-                Tab3 tab3 = Tab3.newInstance(new Random().nextInt(99999999) , true);
+                TabGrid tab3 = TabGrid.newInstance(new Random().nextInt(99999999), true);
+
                 return tab3;
             case 2:
-                Tab1 tab1 = new Tab1();
-                return tab1;
+                TabEdit tabEdit = new TabEdit();
+
+                return tabEdit;
             case 3:
-                Tab4 tab4 = new Tab4();
-                return tab4;
+                TabNew tabNew = new TabNew();
+
+                return tabNew;
             default:
-                Tab1 tabdefault = new Tab1();
+                TabEdit tabdefault = new TabEdit();
+
                 return tabdefault;
         }
+
     }
 
     // This method return the titles for the Tabs in the Tab Strip

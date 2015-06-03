@@ -4,12 +4,10 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.telephony.PhoneNumberUtils;
 import android.view.ActionMode;
@@ -20,9 +18,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -30,17 +25,13 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import gerber.uchicago.edu.Restaurant;
 
-import gerber.uchicago.edu.R;
 import gerber.uchicago.edu.db.RestosDbAdapter;
 import gerber.uchicago.edu.db.RestosSimpleCursorAdapter;
-import gerber.uchicago.edu.dummy.DummyContent;
 import gerber.uchicago.edu.sound.SoundVibeUtils;
 
 
-public class Tab2 extends Fragment  {
+public class TabList extends Fragment  {
 
     //private ListView mListView;
     private RestosDbAdapter mDbAdapter;
@@ -75,8 +66,8 @@ public class Tab2 extends Fragment  {
     private ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static Tab2 newInstance(String param1, String param2) {
-        Tab2 fragment = new Tab2();
+    public static TabList newInstance(String param1, String param2) {
+        TabList fragment = new TabList();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,7 +79,7 @@ public class Tab2 extends Fragment  {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public Tab2() {
+    public TabList() {
     }
 
     @Override
@@ -229,6 +220,10 @@ public class Tab2 extends Fragment  {
                                    // Intent intent = new Intent(getActivity(), EditRestoActivity.class);
                                   //  intent.putExtra("resto_bundle_key", mRestoClicked);
                                    // startActivity(intent);
+
+
+
+
                                     break;
                                 case 1:
                                     //share
