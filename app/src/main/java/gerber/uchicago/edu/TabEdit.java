@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +64,7 @@ public class TabEdit extends Fragment {
 
     //this is a proxy to our database
     private RestosDbAdapter mDbAdapter;
-
-
+    private InputMethodManager mImm;
 
 
     @Override
@@ -106,6 +106,16 @@ public class TabEdit extends Fragment {
        // mExtractButton = (Button) v.findViewById(R.id.extract_yelp_button);
 
 
+        mImm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        //listen for enter and save the record
+        mNameField.setOnKeyListener(enterListener);
+        mCityField.setOnKeyListener(enterListener);
+        mAddressField.setOnKeyListener(enterListener);
+        mPhoneField.setOnKeyListener(enterListener);
+        mYelpField.setOnKeyListener(enterListener);
+
+
 //        //button behaviors
 //        mExtractButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -122,47 +132,9 @@ public class TabEdit extends Fragment {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //check to see if required fields are populated - this is a constraint in the db
-                if (mCityField.getText().toString().equals("") || mCityField.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getActivity(),
-                            "You must populate Search Name and Search City fields",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                } else {
+                saveRecord();
+                ((MainActivity) getActivity()).goToTab(0);
 
-                    //if no data was passed into this Activity, mRestaurant will be null. Create a new restaurant
-                    //no id is required because the sqlite database manages the ids for us
-                    if (mRestaurant == null) {
-                        Restaurant restoNew = new Restaurant(
-                                0,
-                               // mCheckFavorite.isChecked() ? 1 : 0,
-                                mNameField.getText().toString(),
-                                mCityField.getText().toString(),
-                                mAddressField.getText().toString(),
-                                mPhoneField.getText().toString(),
-                                mYelpField.getText().toString(),
-                                mStrImageUrl
-                        );
-                        mDbAdapter.createResto(restoNew);
-                        //if we had passed in a restaurant, then we're in edit-mode. Edit the restaurant
-                        //notice that we are calling the 7-arg constructor with the id
-                    } else {
-                        Restaurant restoEdit = new Restaurant(
-                                mRestaurant.getId(),
-                                0,
-                               // mCheckFavorite.isChecked() ? 1 : 0,
-                                mNameField.getText().toString(),
-                                mCityField.getText().toString(),
-                                mAddressField.getText().toString(),
-                                mPhoneField.getText().toString(),
-                                mYelpField.getText().toString(),
-                                mStrImageUrl
-                        );
-                        mDbAdapter.updateResto(restoEdit);
-                    }
-
-                    ((MainActivity) getActivity()).goToTab(0);
-                }
 
             }
         });
@@ -247,6 +219,50 @@ public class TabEdit extends Fragment {
 
 
         return v;
+    }
+
+    private void saveRecord() {
+        //check to see if required fields are populated - this is a constraint in the db
+        if (mCityField.getText().toString().equals("") || mCityField.getText().toString().equals("")) {
+            Toast toast = Toast.makeText(getActivity(),
+                    "You must populate Search Name and Search City fields",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+
+            //if no data was passed into this Activity, mRestaurant will be null. Create a new restaurant
+            //no id is required because the sqlite database manages the ids for us
+            if (mRestaurant == null) {
+                Restaurant restoNew = new Restaurant(
+                        0,
+                       // mCheckFavorite.isChecked() ? 1 : 0,
+                        mNameField.getText().toString(),
+                        mCityField.getText().toString(),
+                        mAddressField.getText().toString(),
+                        mPhoneField.getText().toString(),
+                        mYelpField.getText().toString(),
+                        mStrImageUrl
+                );
+                mDbAdapter.createResto(restoNew);
+                //if we had passed in a restaurant, then we're in edit-mode. Edit the restaurant
+                //notice that we are calling the 7-arg constructor with the id
+            } else {
+                Restaurant restoEdit = new Restaurant(
+                        mRestaurant.getId(),
+                        0,
+                       // mCheckFavorite.isChecked() ? 1 : 0,
+                        mNameField.getText().toString(),
+                        mCityField.getText().toString(),
+                        mAddressField.getText().toString(),
+                        mPhoneField.getText().toString(),
+                        mYelpField.getText().toString(),
+                        mStrImageUrl
+                );
+                mDbAdapter.updateResto(restoEdit);
+            }
+
+
+        }
     }
 
 
@@ -443,6 +459,25 @@ public class TabEdit extends Fragment {
     }
 
 
+
+    EditText.OnKeyListener enterListener = new EditText.OnKeyListener(){
+
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                // Perform action on key press
+
+                mImm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                saveRecord();
+
+
+                ((MainActivity) getActivity()).goToTab(0);
+                return true;
+            }
+            return false;
+        }
+    };
 
 
     //Download Image Task
