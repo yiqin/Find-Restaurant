@@ -502,7 +502,7 @@ public class TabEdit extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mImageView.setImageResource(R.drawable.gear);
+            mImageView.setImageResource(R.drawable.gear_dark);
         }
 
         protected Bitmap doInBackground(String... urls) {
@@ -533,7 +533,7 @@ public class TabEdit extends Fragment {
 
         protected void onPostExecute(Bitmap result) {
             if (result == null){
-                mImageView.setImageResource(R.drawable.gear);
+                mImageView.setImageResource(R.drawable.gear_dark);
                 Toast.makeText(getActivity(), "Associated image not found on google", Toast.LENGTH_SHORT).show();
             } else {
                 mImageView.setImageBitmap(result);
