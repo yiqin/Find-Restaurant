@@ -213,12 +213,21 @@ public class TabEdit extends Fragment {
             //mExtractButton.setVisibility(View.VISIBLE);
             mStrImageUrl = mRestaurant.getImageUrl();
 
-            //fetchPhoto(mPhotoView);
+            fetchPhoto(mPhotoView);
         }
 
 
 
         return v;
+    }
+
+    private void fetchPhoto(ImageView imageView) {
+        String strUrl = String.format("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=%s%s&imgsz=small&imgtype=photo",
+                mNameField.getText().toString() + "%20restaurant%20", mCityField.getText().toString());
+        strUrl = strUrl.replaceAll("\\s+", "%20");
+
+        new DownloadImageTask(imageView).execute(strUrl);
+
     }
 
     private void saveRecord() {
@@ -482,6 +491,57 @@ public class TabEdit extends Fragment {
 
     //Download Image Task
 
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView mImageView;
+
+        public DownloadImageTask(ImageView imageViewParam) {
+            this.mImageView = imageViewParam;
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mImageView.setImageResource(R.drawable.gear);
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+
+
+            GoogleResultsData googleResultsData = null;
+            Bitmap bitmap = null;
+
+            try {
+
+                if (mStrImageUrl != null && !mStrImageUrl.equals("")){
+                    InputStream in = new java.net.URL(mStrImageUrl).openStream();
+                    bitmap = BitmapFactory.decodeStream(in);
+                } else {
+                    JSONObject jsonRaw = new JSONParser().getSecureJSONFromUrl(urls[0]);
+                    googleResultsData = new Gson().fromJson(jsonRaw.toString(), GoogleResultsData.class);
+                    mStrImageUrl = googleResultsData.responseData.results.get(0).unescapedUrl;
+                    InputStream in = new java.net.URL(mStrImageUrl).openStream();
+                    bitmap = BitmapFactory.decodeStream(in);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            if (result == null){
+                mImageView.setImageResource(R.drawable.gear);
+                Toast.makeText(getActivity(), "Associated image not found on google", Toast.LENGTH_SHORT).show();
+            } else {
+                mImageView.setImageBitmap(result);
+            }
+
+
+        }
+    }
 
 
 
