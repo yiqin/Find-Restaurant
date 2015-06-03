@@ -1,6 +1,7 @@
 package gerber.uchicago.edu;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -16,6 +17,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
 
     int mPlacesId;
+    Context mContext;
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
     public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
@@ -25,7 +27,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         this.NumbOfTabs = mNumbOfTabsumb;
 
     }
-
+    public ViewPagerAdapter(Context context, FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
+        super(fm);
+        this.mContext = context;
+        this.Titles = mTitles;
+        this.NumbOfTabs = mNumbOfTabsumb;
+    }
 
     public int getPlacesId() {
         return mPlacesId;

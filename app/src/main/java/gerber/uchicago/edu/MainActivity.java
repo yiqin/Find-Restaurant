@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -65,6 +66,8 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
     SharedPreferences mPreferences;
 
 
+
+
     //private Menu mMenu;
 
     // private Drawable oldBackground = null;
@@ -75,10 +78,20 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
+
+
+        //Jennifer Um's code
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, mCharSequences fot the Tabs and Number Of Tabs.
+        adapter = new ViewPagerAdapter(this, getSupportFragmentManager(),
+                mCharSequences, mNumboftabs);
+        // Assigning ViewPager View and setting the adapter
+        pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
 
 
         // create our manager instance after the content view is set
@@ -86,12 +99,7 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
         // enable status bar tint
         mTintManager.setStatusBarTintEnabled(true);
 
-        // Creating The ViewPagerAdapter and Passing Fragment Manager, mCharSequences fot the Tabs and Number Of Tabs.
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(), mCharSequences, mNumboftabs);
-        // Assigning ViewPager View and setting the adapter
-        pager = (ViewPager) findViewById(R.id.pager);
 
-        pager.setAdapter(adapter);
 
 
         // Assiging the Sliding Tab Layout View
@@ -140,6 +148,9 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
 
 
     }
+
+
+
 
     private void inflateActionBar(ActionBar bar, int pos) {
 
@@ -253,6 +264,8 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
 
 
     }
+
+
 
 
     private void toggleActionBarButton(int pos, final boolean checked) {
@@ -378,20 +391,23 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
 
     }
 
-
+    public int getRecentIdClicked() {
+        return mRecentIdClicked;
+    }
 
     //overloaded
-    public void goToTab(Tab tab) {
+    public void goToTab( int tabNum) {
         adapter.notifyDataSetChanged();
-        pager.setCurrentItem(tab.getNumVal());
+        pager.setCurrentItem(tabNum);
 
     }
 
     //overloaded
-    public void goToTab(Tab tab, int itemID) {
+    public void goToTab( int itemID, int tabNum) {
+
         mRecentIdClicked = itemID;
         adapter.notifyDataSetChanged();
-        pager.setCurrentItem(tab.getNumVal());
+        pager.setCurrentItem(tabNum);
 
     }
 

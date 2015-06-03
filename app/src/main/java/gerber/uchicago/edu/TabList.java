@@ -220,8 +220,7 @@ public class TabList extends Fragment  {
                                    // Intent intent = new Intent(getActivity(), EditRestoActivity.class);
                                   //  intent.putExtra("resto_bundle_key", mRestoClicked);
                                    // startActivity(intent);
-
-
+                                    ((MainActivity)getActivity()).goToTab( mIdClicked, 2);
 
 
                                     break;
