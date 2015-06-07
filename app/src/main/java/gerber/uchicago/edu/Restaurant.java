@@ -22,7 +22,7 @@ public class Restaurant implements Serializable {
     private String mUpdateTime;
 
 
-    public Restaurant(long id, int favorite, String name, String city, String address, String phone, String yelp, String imageUrl) {
+    public Restaurant(long id, int favorite, String name, String city, String address, String phone, String yelp, String imageUrl, String updateTime) {
         mId = id;
         mFavorite = favorite;
         mName = name;
@@ -32,7 +32,7 @@ public class Restaurant implements Serializable {
         mYelp = yelp;
         mImageUrl = imageUrl;
 
-        mUpdateTime = getCurrentTimeStamp();
+        mUpdateTime = updateTime;
     }
 
     public Restaurant(int favorite, String name, String city, String address, String phone, String yelp, String imageUrl) {

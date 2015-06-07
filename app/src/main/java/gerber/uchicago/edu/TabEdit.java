@@ -265,7 +265,8 @@ public class TabEdit extends Fragment {
                         mAddressField.getText().toString(),
                         mPhoneField.getText().toString(),
                         mYelpField.getText().toString(),
-                        mStrImageUrl
+                        mStrImageUrl,
+                        Restaurant.getCurrentTimeStamp()
                 );
                 mDbAdapter.updateResto(restoEdit);
             }

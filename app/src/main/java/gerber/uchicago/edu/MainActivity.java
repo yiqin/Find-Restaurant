@@ -35,7 +35,7 @@ import gerber.uchicago.edu.sound.SoundVibeUtils;
 public class MainActivity extends ActionBarActivity implements TabList.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     // Declaring Your View and Variables
-    public static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_999";
+    public static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_1002";
     public static final String BOOLEAN_ARRAY_KEY = "boolean_array_key";
     ViewPager pager;
     ViewPagerAdapter adapter;

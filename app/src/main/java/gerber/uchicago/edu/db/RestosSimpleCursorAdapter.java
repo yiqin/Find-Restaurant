@@ -57,10 +57,17 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
 
             holder = new ViewHolder();
 
+            // TODO: We need to make some modification here....
             holder.nName = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_NAME);
             holder.nCity = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_CITY);
             holder.nFav = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_FAV);
             holder.nNiv = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_IMG_URL);
+
+
+            // TODO: I can't add this line....
+            holder.nUpdateTime = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_UPDATE_TIME);
+
+
 
             holder.viewImportant =  view.findViewById(R.id.list_tab);
             holder.textViewName = (TextView) view.findViewById(R.id.list_text);
@@ -91,6 +98,7 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
         int nFav;
         int nNiv;
 
+        int nUpdateTime;
 
 
         TextView textViewName;
@@ -99,4 +107,6 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
         NetworkImageView networkImageView;
 
     }
+
+
 }

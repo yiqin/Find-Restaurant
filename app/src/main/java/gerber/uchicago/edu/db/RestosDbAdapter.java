@@ -28,6 +28,9 @@ public class RestosDbAdapter {
     public static final String COL_YELP = "yelp";
     public static final String COL_IMG_URL = "img_url";
 
+    public static final String COL_UPDATE_TIME = "updateTime";
+
+
     public static final String SORT_NAME_ASC = COL_NAME + " ASC";
     public static final String SORT_FAV_DESC = COL_FAV + " DESC";
     public static final String SORT_NONE = null;
@@ -42,13 +45,18 @@ public class RestosDbAdapter {
     public static final int INDEX_YELP = INDEX_ID + 6;
     public static final int INDEX_IMG_URL = INDEX_ID + 7;
 
+    public static final int INDEX_UPDATE_TIME = INDEX_ID + 8;
+
+
     private static final String TAG = "RestosDbAdapter";
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
 
     private static final String DATABASE_NAME = "dba_favr";
     private static final String SQLITE_TABLE = "tbl_favr";
-    private static final int DATABASE_VERSION = 4;
+
+    // TODO: Change Database_version here...
+    private static final int DATABASE_VERSION = 7;
 
     private final Context mCtx;
 
@@ -61,7 +69,8 @@ public class RestosDbAdapter {
                     COL_ADDRESS + " TEXT, " +
                     COL_PHONE + " TEXT, " +
                     COL_YELP + " TEXT, " +
-                    COL_IMG_URL + " TEXT);";
+                    COL_IMG_URL + " TEXT, " +
+                    COL_UPDATE_TIME + " TEXT);";
 
 
     public RestosDbAdapter(Context ctx) {
@@ -95,6 +104,8 @@ public class RestosDbAdapter {
         values.put(COL_YELP, resto.getYelp());
         values.put(COL_IMG_URL, resto.getImageUrl());
 
+        values.put(COL_UPDATE_TIME, resto.getUpdateTime());
+
 
         //returns the id of the newly created resto
         return mDb.insert(SQLITE_TABLE, null, values);
@@ -106,7 +117,7 @@ public class RestosDbAdapter {
     public Restaurant fetchRestoById(int id) {
 
         Cursor cursor = mDb.query(SQLITE_TABLE, new String[]{COL_ID, COL_FAV,
-                        COL_NAME, COL_CITY, COL_ADDRESS, COL_PHONE, COL_YELP, COL_IMG_URL}, COL_ID + "=?",
+                        COL_NAME, COL_CITY, COL_ADDRESS, COL_PHONE, COL_YELP, COL_IMG_URL, COL_UPDATE_TIME}, COL_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null
         );
         if (cursor != null)
@@ -120,8 +131,8 @@ public class RestosDbAdapter {
                 cursor.getString(INDEX_ADDRESS),
                 cursor.getString(INDEX_PHONE),
                 cursor.getString(INDEX_YELP),
-                cursor.getString(INDEX_IMG_URL)
-
+                cursor.getString(INDEX_IMG_URL),
+                cursor.getString(INDEX_UPDATE_TIME)
         );
 
         return resto;
