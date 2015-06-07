@@ -52,12 +52,14 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-
+        // TODO: This line will cause crash.
+        // ((MainActivity)mContext).adapter.notifyDataSetChanged();
         switch (position){
 
             //list view
             case 0:
                 TabList tabList = new TabList();
+
 
                 return tabList;
             //grid view
@@ -78,6 +80,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
                 return tabdefault;
         }
+
 
     }
 

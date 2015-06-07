@@ -141,10 +141,12 @@ public class TabNew extends Fragment {
                                 mStrImageUrl
                         );
                         mDbAdapter.createResto(restoNew);
+                        ((MainActivity)getActivity()).goToTab(0);
 
                         // TODO: edit-mode
                         //if we had passed in a restaurant, then we're in edit-mode. Edit the restaurant
                         //notice that we are calling the 7-arg constructor with the id
+
                     } else {
                         Restaurant restoEdit = new Restaurant(
                                 mRestaurant.getId(),
@@ -157,6 +159,7 @@ public class TabNew extends Fragment {
                                 mStrImageUrl
                         );
                         mDbAdapter.updateResto(restoEdit);
+
 
                     }
 
@@ -181,7 +184,7 @@ public class TabNew extends Fragment {
             @Override
             public void onClick(View view) {
                 // getActivity().finish();
-
+                ((MainActivity)getActivity()).goToTab(0);
             }
         });
         mViewFavorite = view.findViewById(R.id.view_favorite);

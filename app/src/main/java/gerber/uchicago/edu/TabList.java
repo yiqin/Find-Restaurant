@@ -258,7 +258,13 @@ public class TabList extends Fragment  {
                                 case 6:
                                     //delete single resto (we need to keep this for devices running 11 or less)
                                     mDbAdapter.deleteRestoById(mIdClicked);
-                                    mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
+                                    // TODO: update the mDbAdapter
+
+
+                                    ((MainActivity) getActivity()).adapter.notifyDataSetChanged();
+
+
+                                    // mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
                                     break;
                                 case 7:
                                     //cancel

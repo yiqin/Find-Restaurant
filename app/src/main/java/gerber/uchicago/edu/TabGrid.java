@@ -282,8 +282,12 @@ public class TabGrid extends Fragment {
         super.onResume();
         mDbAdapter.open();
         // mDbAdapter.insertSomeRestos();
-        mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
 
+        // TODO: Something is needed here.
+
+
+        mCursorAdapter.changeCursor(mDbAdapter.fetchAllRestos(getSortOrder()));
+        mCursorAdapter.notifyDataSetChanged();
     }
 
 
