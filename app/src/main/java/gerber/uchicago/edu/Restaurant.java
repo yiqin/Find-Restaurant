@@ -1,6 +1,8 @@
 package gerber.uchicago.edu;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Adam Gerber on 5/19/2014.
@@ -16,6 +18,8 @@ public class Restaurant implements Serializable {
     private String mPhone;
     private String mYelp;
     private String mImageUrl;
+    // TODO: add time stamp
+    private String mUpdateTime;
 
 
     public Restaurant(long id, int favorite, String name, String city, String address, String phone, String yelp, String imageUrl) {
@@ -27,6 +31,8 @@ public class Restaurant implements Serializable {
         mPhone = phone;
         mYelp = yelp;
         mImageUrl = imageUrl;
+
+        mUpdateTime = getCurrentTimeStamp();
     }
 
     public Restaurant(int favorite, String name, String city, String address, String phone, String yelp, String imageUrl) {
@@ -37,6 +43,8 @@ public class Restaurant implements Serializable {
         mPhone = phone;
         mYelp = yelp;
         mImageUrl = imageUrl;
+
+        mUpdateTime = getCurrentTimeStamp();
     }
 
     public String getImageUrl() {
@@ -101,5 +109,32 @@ public class Restaurant implements Serializable {
 
     public void setFavorite(int favorite) {
         mFavorite = favorite;
+    }
+
+    public void setUpdateTime(){
+        mUpdateTime = getCurrentTimeStamp();
+    }
+
+    public String getUpdateTime(){
+        return mUpdateTime;
+    }
+
+
+    /**
+     *
+     * @return yyyy-MM-dd HH:mm:ss formate date as string
+     */
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTimeStamp = dateFormat.format(new Date()); // Find todays date
+
+            return currentTimeStamp;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 }
