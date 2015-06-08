@@ -56,7 +56,7 @@ public class RestosDbAdapter {
     private static final String SQLITE_TABLE = "tbl_favr";
 
     // TODO: Change Database_version here...
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     private final Context mCtx;
 
@@ -141,7 +141,7 @@ public class RestosDbAdapter {
     public Cursor fetchAllRestos(String strSort) {
 
         Cursor mCursor = mDb.query(SQLITE_TABLE, new String[]{COL_ID, COL_FAV,
-                        COL_NAME, COL_CITY, COL_ADDRESS, COL_PHONE, COL_YELP, COL_IMG_URL},
+                        COL_NAME, COL_CITY, COL_ADDRESS, COL_PHONE, COL_YELP, COL_IMG_URL, COL_UPDATE_TIME},
                 null, null, null, null, strSort
         );
 

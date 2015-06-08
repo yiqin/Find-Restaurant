@@ -78,7 +78,7 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
             view.setTag(holder);
         }
 
-        holder.textViewName.setText(cursor.getString(holder.nName));
+        holder.textViewName.setText(cursor.getString(holder.nUpdateTime));
         holder.textViewCity.setText(cursor.getString(holder.nCity));
         holder.networkImageView.setImageUrl(cursor.getString(holder.nNiv), mImageLoader);
 
