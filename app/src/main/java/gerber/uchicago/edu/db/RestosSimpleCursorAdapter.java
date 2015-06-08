@@ -57,16 +57,11 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
 
             holder = new ViewHolder();
 
-            // TODO: We need to make some modification here....
             holder.nName = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_NAME);
             holder.nCity = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_CITY);
             holder.nFav = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_FAV);
             holder.nNiv = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_IMG_URL);
-
-
-            // TODO: I can't add this line....
             holder.nUpdateTime = cursor.getColumnIndexOrThrow(RestosDbAdapter.COL_UPDATE_TIME);
-
 
 
             holder.viewImportant =  view.findViewById(R.id.list_tab);
@@ -74,13 +69,19 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
             holder.textViewCity = (TextView) view.findViewById(R.id.list_city);
             holder.networkImageView = (NetworkImageView) view.findViewById(R.id.list_niv);
 
+            holder.textViewUpdateTime = (TextView) view.findViewById(R.id.list_updateTime);
+
 
             view.setTag(holder);
         }
 
-        holder.textViewName.setText(cursor.getString(holder.nUpdateTime));
+        holder.textViewName.setText(cursor.getString(holder.nName));
         holder.textViewCity.setText(cursor.getString(holder.nCity));
         holder.networkImageView.setImageUrl(cursor.getString(holder.nNiv), mImageLoader);
+
+        holder.textViewUpdateTime.setText(cursor.getString(holder.nUpdateTime));
+
+
 
         if (cursor.getInt(holder.nFav) > 0)
             holder.viewImportant.setBackgroundColor(context.getResources().getColor(R.color.orange));
@@ -97,7 +98,6 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
         int nCity;
         int nFav;
         int nNiv;
-
         int nUpdateTime;
 
 
@@ -106,6 +106,7 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
         View viewImportant;
         NetworkImageView networkImageView;
 
+        TextView textViewUpdateTime;
     }
 
 

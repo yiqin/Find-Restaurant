@@ -4,7 +4,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="80dp"
+              android:layout_height="120dp"
               android:background="@color/purple_dark"
 
 
@@ -13,7 +13,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="118dp"
         android:background="?android:attr/activatedBackgroundIndicator"
 
 
@@ -29,16 +29,17 @@
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/list_niv"
             android:layout_width="74dp"
-            android:layout_height="74dp"
+            android:layout_height="116dp"
             android:layout_margin="2dp"
             android:src="@drawable/gear_dark"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop"
+            />
 
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="78dp"
+            android:layout_height="118dp"
 
 
             >
@@ -111,13 +112,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:gravity="top|left"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:textColor="@color/white"
                 android:text="name text"
-                android:paddingLeft="10dp"
+                android:paddingLeft="14dp"
                 android:textSize="12sp"
                 android:ellipsize="end"
                 android:maxLines="1"
+
 
                 />
 
