@@ -58,7 +58,7 @@ public class Yelp {
 
         request.addQuerystringParameter("location", city);
         //TODO: set category here.
-        request.addQuerystringParameter("category", "restaurants");
+        // request.addQuerystringParameter("category", "restaurants");
         request.addQuerystringParameter("term", searchTerm);
         request.addQuerystringParameter("limit", "20");
 
@@ -69,6 +69,7 @@ public class Yelp {
         YelpResultsData mYelpSearchResult = null;
 
         try {
+            // TODO: What should I do here?
             mYelpSearchResult = new Gson().fromJson(rawData, YelpResultsData.class);
         } catch (Exception e) {
             e.printStackTrace();
