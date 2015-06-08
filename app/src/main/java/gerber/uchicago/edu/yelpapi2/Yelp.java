@@ -20,10 +20,10 @@ import org.scribe.oauth.OAuthService;
 public class Yelp {
 
     //these are my developers keys, please get your own by going to: http://www.yelp.com/developers/getting_started/api_access
-    private static final String CONSUMER_KEY = "dSZgGbpE51gcJ2mPFy8Dag";
-    private static final String CONSUMER_SECRET = "CAe7Yp1NEYVPh2Z2ZpDDetqUpWM";
-    private static final String TOKEN = "ksJ-aFEUA-sO8YKI9TwbTem8DoLOOtH0";
-    private static final String TOKEN_SECRET = "O1oqDGf93zFEz-_ctYgicO1VYQM";
+    private static final String CONSUMER_KEY = "P4OLddR4ErelBW1KKeSIaQ";
+    private static final String CONSUMER_SECRET = "gX7EvDGX5OK_5O8QEt_LabNB6WE";
+    private static final String TOKEN = "BTVYw5QzgcQSRX9YfWPfRzbHn_lGIU8L";
+    private static final String TOKEN_SECRET = "tZyBbp_AhnyOjYJEjUZ6QquCaIg";
 
     OAuthService service;
     Token accessToken;
