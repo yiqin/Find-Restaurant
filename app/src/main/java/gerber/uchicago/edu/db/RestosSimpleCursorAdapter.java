@@ -32,7 +32,6 @@ public class RestosSimpleCursorAdapter extends SimpleCursorAdapter {
 
         mRequestQueue = Volley.newRequestQueue(context.getApplicationContext());
 
-        // TODO: update image loader here... Number 4 task.....
         mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(10);
             public void putBitmap(String url, Bitmap bitmap) {
