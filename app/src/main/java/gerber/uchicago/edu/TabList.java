@@ -132,6 +132,12 @@ public class TabList extends Fragment  {
             mPreferences.edit().putBoolean(MainActivity.VERY_FIRST_LOAD_MAIN, false).commit();
         }
 
+
+        // TODO: set sort here.... ASC, DESC - We need to put this in the drawer.....
+        setSortOrder(RestosDbAdapter.COL_UPDATE_TIME+" ASC");
+
+
+
         mSortOrder = mPreferences.getString(SORT_ORDER, null);
         Cursor cursor = mDbAdapter.fetchAllRestos(getSortOrder());
 
