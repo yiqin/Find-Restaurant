@@ -26,7 +26,7 @@
             android:background="@color/green"
             ></View>
 
-        <com.android.volley.toolbox.NetworkImageView
+        <gerber.uchicago.edu.AnimatedNetworkImageView
             android:id="@+id/list_niv"
             android:layout_width="74dp"
             android:layout_height="116dp"
