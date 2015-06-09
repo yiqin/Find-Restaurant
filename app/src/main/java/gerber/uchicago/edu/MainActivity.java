@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
+import gerber.uchicago.edu.db.RestosDbAdapter;
 import gerber.uchicago.edu.sound.SoundVibeUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.app.Fragment;
@@ -99,8 +100,23 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
         mDrawerView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                mDrawerView.setText("Descending");
+
+                String currentSort = mPreferences.getString("sort_order", null);
+
+                if(currentSort == RestosDbAdapter.COL_UPDATE_TIME + " DESC"){
+                    mDrawerView.setText("Ascending");
+                    mPreferences.edit().putString("sort_order", RestosDbAdapter.COL_UPDATE_TIME + " ASC").commit();
+
+                } else {
+                    mDrawerView.setText("Descending");
+                    mPreferences.edit().putString("sort_order", RestosDbAdapter.COL_UPDATE_TIME + " DESC").commit();
+                }
+
                 mDrawerLayout.closeDrawer(mDrawerView);
+
+                
+
+
             }
         });
 

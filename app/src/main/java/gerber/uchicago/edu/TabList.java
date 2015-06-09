@@ -134,8 +134,6 @@ public class TabList extends Fragment  {
         }
 
 
-        // TODO: set sort here.... ASC, DESC - We need to put this in the drawer.....
-        setSortOrder(RestosDbAdapter.COL_UPDATE_TIME+" ASC");
 
 
 
