@@ -5,6 +5,8 @@
     android:layout_height="match_parent">
 
 
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
@@ -43,5 +45,19 @@
 
 
 </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/left_drawer"
+        android:layout_width="241dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#333"
+        android:textColor="@color/white"
+        android:text="name text"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp" />
+
+
 
 </android.support.v4.widget.DrawerLayout>

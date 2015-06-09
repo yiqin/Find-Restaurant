@@ -31,12 +31,16 @@ import gerber.uchicago.edu.sound.SoundVibeUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.app.Fragment;
 
+import android.widget.TextView;
+
+
 /**
  * Created by Edwin on 15/02/2015.
  */
 public class MainActivity extends ActionBarActivity implements TabList.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     private DrawerLayout mDrawerLayout;
+    private TextView mDrawerTextView;
 
     // Declaring Your View and Variables
     public static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_1010";
@@ -89,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
 
         // TODO: DrawerLayout....
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        mDrawerTextView = (TextView) findViewById(R.id.left_drawer);
 
 
 
@@ -189,10 +193,11 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
                 PrefsMgr.setBooleanArray(MainActivity.this, BOOLEAN_ARRAY_KEY, bButtonArray);
 
                 // TODO: Draw....
-                mDrawerLayout.openDrawer(1);
+                mDrawerLayout.openDrawer(mDrawerTextView);
 
             }
         });
+
         ImageButton v1 = (ImageButton) v.findViewById(R.id.action_1);
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,6 +211,7 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
 
             }
         });
+
         ImageButton v2 = (ImageButton) v.findViewById(R.id.action_2);
         v2.setOnClickListener(new View.OnClickListener() {
             @Override
