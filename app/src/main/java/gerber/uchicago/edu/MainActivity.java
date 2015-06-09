@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -40,7 +41,7 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity implements TabList.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
 
     private DrawerLayout mDrawerLayout;
-    private TextView mDrawerTextView;
+    private Button mDrawerView;
 
     // Declaring Your View and Variables
     public static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_1010";
@@ -93,8 +94,15 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
 
         // TODO: DrawerLayout....
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerTextView = (TextView) findViewById(R.id.left_drawer);
 
+        mDrawerView = (Button) findViewById(R.id.left_drawer);
+        mDrawerView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                mDrawerView.setText("Descending");
+                mDrawerLayout.closeDrawer(mDrawerView);
+            }
+        });
 
 
         actionBar = getSupportActionBar();
@@ -193,7 +201,7 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
                 PrefsMgr.setBooleanArray(MainActivity.this, BOOLEAN_ARRAY_KEY, bButtonArray);
 
                 // TODO: Draw....
-                mDrawerLayout.openDrawer(mDrawerTextView);
+                mDrawerLayout.openDrawer(mDrawerView);
 
             }
         });

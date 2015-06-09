@@ -47,14 +47,14 @@
 </LinearLayout>
 
 
-    <TextView
+    <Button
         android:id="@+id/left_drawer"
         android:layout_width="241dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#333"
         android:textColor="@color/white"
-        android:text="This is the drawer view. I spent a lot of time on this part. So I added a note here."
+        android:text="Ascending"
         android:paddingLeft="15sp"
         android:paddingRight="15sp" />
 
