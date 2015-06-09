@@ -54,7 +54,7 @@
         android:layout_gravity="start"
         android:background="#333"
         android:textColor="@color/white"
-        android:text="name text"
+        android:text="This is the drawer view. I spent a lot of time on this part. So I added a note here."
         android:paddingLeft="15sp"
         android:paddingRight="15sp" />
 
