@@ -54,8 +54,7 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
     int mNumboftabs = 4;
     ActionBar actionBar;
 
-    private   int mRecentIdClicked;
-
+    private int mRecentIdClicked;
 
     public enum Tab {
         LIST(0), GRID(1), EDIT(2), NEW(3);
@@ -102,7 +101,6 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
                 // Perform action on click
 
                 String currentSort = mPreferences.getString("sort_order", null);
-
                 if(currentSort == RestosDbAdapter.COL_UPDATE_TIME + " DESC"){
                     mDrawerView.setText("Ascending");
                     mPreferences.edit().putString("sort_order", RestosDbAdapter.COL_UPDATE_TIME + " ASC").commit();
@@ -113,10 +111,8 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
                 }
 
                 mDrawerLayout.closeDrawer(mDrawerView);
-
-                
-
-
+                // Refresh the tab one.
+                goToTab(pager.getCurrentItem());
             }
         });
 
@@ -187,6 +183,12 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
         inflateActionBar(actionBar, 0);
 
 
+        String currentSort = mPreferences.getString("sort_order", null);
+        if(currentSort == RestosDbAdapter.COL_UPDATE_TIME + " DESC"){
+            mDrawerView.setText("Descending");
+        } else {
+            mDrawerView.setText("Ascending");
+        }
     }
 
 
