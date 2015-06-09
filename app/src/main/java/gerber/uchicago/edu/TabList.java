@@ -112,6 +112,7 @@ public class TabList extends Fragment  {
         super.onCreate(savedInstanceState);
 
 
+
         mListView = (ListView) view.findViewById(R.id.reminders_list_view);
         mListView.setDivider(null);
 

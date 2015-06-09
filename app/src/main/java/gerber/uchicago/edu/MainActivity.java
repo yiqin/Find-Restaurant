@@ -28,11 +28,15 @@ import android.widget.LinearLayout;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import gerber.uchicago.edu.sound.SoundVibeUtils;
+import android.support.v4.widget.DrawerLayout;
+import android.app.Fragment;
 
 /**
  * Created by Edwin on 15/02/2015.
  */
 public class MainActivity extends ActionBarActivity implements TabList.OnTab2InteractionListener, ViewPager.OnPageChangeListener, android.support.v7.view.ActionMode.Callback {
+
+    private DrawerLayout mDrawerLayout;
 
     // Declaring Your View and Variables
     public static final String VERY_FIRST_LOAD_MAIN = "our_very_first_load_1010";
@@ -79,7 +83,15 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        // TODO: set content View....
         setContentView(R.layout.activity_main);
+
+        // TODO: DrawerLayout....
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
@@ -175,6 +187,9 @@ public class MainActivity extends ActionBarActivity implements TabList.OnTab2Int
                 toggleActionBarButton(0, bButtonArray[0]);
                 toggleActionBarButton(1, bButtonArray[1]);
                 PrefsMgr.setBooleanArray(MainActivity.this, BOOLEAN_ARRAY_KEY, bButtonArray);
+
+                // TODO: Draw....
+                mDrawerLayout.openDrawer(1);
 
             }
         });
